@@ -1,2 +1,2 @@
 # Backend
-Backend repo for Hacker News
+FrontEnd repo for Hacker News
