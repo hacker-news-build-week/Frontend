@@ -164,20 +164,3 @@ export const fetchSaliestHNTopics = () => dispatch => {
       });
     });
 };
-
-// The following can be used if we implement searching comments by topic:
-// export const SUBMIT_TOPIC_REQUEST = 'SUBMIT_TOPIC_REQUEST';
-// export const SUBMIT_TOPIC_SUCCESS = 'SUBMIT_TOPIC_SUCCESS';
-// export const SUBMIT_TOPIC_FAILURE = 'SUBMIT_TOPIC_FAILURE';
-
-// export const submitTopic = topic => dispatch => {
-//   dispatch({ type: SUBMIT_TOPIC_REQUEST });
-//   return axiosAuth()
-//     .get('http://localhost:5200/api/topics', topic)
-//     .then(res => {
-//       dispatch({ type: SUBMIT_TOPIC_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => {
-//       dispatch({ type: SUBMIT_TOPIC_FAILURE, payload: err.response.data });
-//     });
-// };
