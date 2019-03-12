@@ -2,36 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { useInput } from '../utilities/useInput';
-import { submitUsername, submitTopic } from '../actions/actions';
+import { submitHNUsername } from '../actions/actions';
 
-const HNAnalysis = ({
-  submitUsername,
-  usernameSentiment,
-  submitTopic,
-  topicSentiment
-}) => {
+const HNAnalysis = ({ submitHNUsername, hNUsernameSentiment }) => {
   const username = useInput();
-  const topic = useInput();
 
-  const requestSubmitUsername = e => {
+  const requestSubmitHNUsername = e => {
     e.preventDefault();
-    submitUsername({
+    submitHNUsername({
       username: username.value
-    });
-  };
-
-  const requestSubmitTopic = e => {
-    e.preventDefault();
-    submitTopic({
-      topic: topic.value
     });
   };
 
   return (
     <div className='hnanalysis-form'>
-      <h2>Try it out by entering text below:</h2>
+      <h2>Enter a Hacker News Username below:</h2>
       <div className='username-div'>
-        <form onSubmit={requestSubmitUsername}>
+        <form onSubmit={requestSubmitHNUsername}>
           <input
             required
             type='text'
@@ -42,28 +29,16 @@ const HNAnalysis = ({
           <button type='submit'>Analyze Sentiment</button>
         </form>
       </div>
-      <div className='topic-div'>
-        <form onSubmit={requestSubmitTopic}>
-          <input
-            required
-            type='text'
-            value={topic.value}
-            onChange={topic.updateValue}
-            placeholder='Hacker News topic'
-          />
-          <button type='submit'>Analyze Sentiment</button>
-        </form>
-      </div>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  usernameSentiment: state.commentUsername,
-  topicSentiment: state.topicSentiment
+const mapStateToProps = ({ hNUsernameSentiment, hNUsernameComments }) => ({
+  hNUsernameSentiment,
+  hNUsernameComments
 });
 
 export default connect(
   mapStateToProps,
-  { submitUsername, submitTopic }
+  { submitHNUsername }
 )(HNAnalysis);

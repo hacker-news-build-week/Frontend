@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useInput } from '../utilities/useInput';
-import { submitComment } from '../actions/actions';
+import { addComment } from '../actions/actions';
 
-const Sentiment = ({ submitComment, submittingComment, commentSentiment }) => {
-  const comment = useInput();
+const Sentiment = ({ saltyUserId, addComment, addingComment }) => {
+  const commentText = useInput();
   const [commentCount, setCommentCount] = useState(0);
 
-  const requestSubmitComment = e => {
+  const requestAddComment = e => {
     e.preventDefault();
-    submitComment({
-      comment: comment.value
+    addComment({
+      saltyUserId,
+      commentText: commentText.value
     });
     setCommentCount(commentCount + 1);
   };
@@ -27,30 +28,29 @@ const Sentiment = ({ submitComment, submittingComment, commentSentiment }) => {
         distinctio?
       </p>
       <h2>Try it out by entering text below:</h2>
-      <form onSubmit={requestSubmitComment}>
+      <form onSubmit={requestAddComment}>
         <input
           required
           type='text'
-          value={comment.value}
-          onChange={comment.updateValue}
+          value={commentText.value}
+          onChange={commentText.updateValue}
           placeholder='Enter text here'
         />
         <button type='submit'>Analyze Sentiment</button>
       </form>
-      <p>Sentiment of the entered text: {commentSentiment}</p>
-      {commentCount >= 3 && submittingComment === false && (
+      {commentCount >= 3 && addingComment === false && (
         <Link to='/hnanalysis'>Ready to try it?</Link>
       )}
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  commentSentiment: state.commentSentiment,
-  submittingComment: state.submittingComment
+const mapStateToProps = ({ saltyUserId, addingComment }) => ({
+  saltyUserId,
+  addingComment
 });
 
 export default connect(
   mapStateToProps,
-  { submitComment }
+  { addComment }
 )(Sentiment);

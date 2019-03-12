@@ -40,6 +40,7 @@ const initialState = {
   editingComment: false,
   submittingHNUsername: false,
   hNUsernameSentiment: '',
+  hNUsernameComments: [],
   fetchingSaltiestHNUsers: false,
   saltiestHNUsers: [],
   fetchingSaltiestHNTopics: false,
@@ -145,22 +146,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         submittingHNUsername: false,
-        errorStatusCode: action.payload
-      };
-
-    case SUBMIT_TOPIC_REQUEST:
-      return { ...state, submittingTopic: true, errorStatusCode: null };
-    case SUBMIT_TOPIC_SUCCESS:
-      return {
-        ...state,
-        submittingTopic: false,
-        topicSentiment: action.payload,
-        errorStatusCode: null
-      };
-    case SUBMIT_TOPIC_FAILURE:
-      return {
-        ...state,
-        submittingTopic: false,
         errorStatusCode: action.payload
       };
 

@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className='app'>
       <Route path='/loginsignup' component={LogInSignUp} />
-      <PrivateRoute exact path='/' component={Main} />
+      <PrivateRoute path='/' component={Main} />
     </div>
   );
 };

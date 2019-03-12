@@ -31,6 +31,6 @@ const mapStateToProps = ({ saltyToken, errorStatusCode }) => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    {}
+    null
   )(PrivateRoute)
 );
