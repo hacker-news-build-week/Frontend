@@ -13,7 +13,7 @@ export const NavBar = () => {
         <div>Sentiment Analysis</div>
       </NavLink>
       <NavLink
-        to='/hncommentanalysis'
+        to='/hnanalysis'
         className='nav-link'
         activeClassName='active-nav-link'
       >

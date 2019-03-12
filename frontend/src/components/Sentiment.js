@@ -39,7 +39,7 @@ const Sentiment = ({ submitComment, submittingComment, commentSentiment }) => {
       </form>
       <p>Sentiment of the entered text: {commentSentiment}</p>
       {commentCount >= 3 && submittingComment === false && (
-        <Link to='/hncommentanalysis'>Ready to try it?</Link>
+        <Link to='/hnanalysis'>Ready to try it?</Link>
       )}
     </div>
   );
