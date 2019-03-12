@@ -2,6 +2,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
   SUBMIT_COMMENT_REQUEST,
   SUBMIT_COMMENT_SUCCESS,
   SUBMIT_COMMENT_FAILURE,
@@ -15,60 +18,84 @@ import {
 
 const initialState = {
   loggingIn: false,
+  saltyToken: localStorage.getItem('saltyToken'),
+  saltyUserId: '',
+  signingUp: false,
   submittingComment: false,
-  // It's possible that this doesn't need to be stored. Right now, I'm not sure how to recieve a response from the server and display the response without storing it in state.
-  commentSentiment: '',
+  comments: [],
   submittingUsername: false,
   usernameSentiment: '',
-  submittingTopic: false,
-  usernameTopic: '',
-  error: null
+  errorStatusCode: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
-      return { ...state, loggingIn: true, error: null };
+      return { ...state, loggingIn: true, errorStatusCode: null };
     case LOGIN_SUCCESS:
-      return { ...state, loggingIn: false, error: null };
+      return {
+        ...state,
+        loggingIn: false,
+        saltyUserId: action.payload,
+        errorStatusCode: null
+      };
     case LOGIN_FAILURE:
-      return { ...state, loggingIn: false, error: action.payload };
+      return { ...state, loggingIn: false, errorStatusCode: action.payload };
+
+    case SIGNUP_REQUEST:
+      return { ...state, signingUp: true, errorStatusCode: null };
+    case SIGNUP_SUCCESS:
+      return { ...state, signingUp: false, errorStatusCode: null };
+    case SIGNUP_FAILURE:
+      return { ...state, signingUp: false, errorStatusCode: action.payload };
 
     case SUBMIT_COMMENT_REQUEST:
-      return { ...state, submittingComment: true, error: null };
+      return { ...state, submittingComment: true, errorStatusCode: null };
     case SUBMIT_COMMENT_SUCCESS:
       return {
         ...state,
         submittingComment: false,
         commentSentiment: action.payload,
-        error: null
+        errorStatusCode: null
       };
     case SUBMIT_COMMENT_FAILURE:
-      return { ...state, submittingComment: false, error: action.payload };
+      return {
+        ...state,
+        submittingComment: false,
+        errorStatusCode: action.payload
+      };
 
     case SUBMIT_USERNAME_REQUEST:
-      return { ...state, submittingUsername: true, error: null };
+      return { ...state, submittingUsername: true, errorStatusCode: null };
     case SUBMIT_USERNAME_SUCCESS:
       return {
         ...state,
         submittingUsername: false,
         usernameSentiment: action.payload,
-        error: null
+        errorStatusCode: null
       };
     case SUBMIT_USERNAME_FAILURE:
-      return { ...state, submittingUsername: false, error: action.payload };
+      return {
+        ...state,
+        submittingUsername: false,
+        errorStatusCode: action.payload
+      };
 
     case SUBMIT_TOPIC_REQUEST:
-      return { ...state, submittingTopic: true, error: null };
+      return { ...state, submittingTopic: true, errorStatusCode: null };
     case SUBMIT_TOPIC_SUCCESS:
       return {
         ...state,
         submittingTopic: false,
         topicSentiment: action.payload,
-        error: null
+        errorStatusCode: null
       };
     case SUBMIT_TOPIC_FAILURE:
-      return { ...state, submittingTopic: false, error: action.payload };
+      return {
+        ...state,
+        submittingTopic: false,
+        errorStatusCode: action.payload
+      };
 
     default:
       return state;

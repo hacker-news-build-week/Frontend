@@ -5,7 +5,7 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-export const login = creds => dispatch => {
+export const logIn = creds => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
   return axios
     .post('http://localhost:5200/api/login', creds)
@@ -13,7 +13,23 @@ export const login = creds => dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
-      dispatch({ type: LOGIN_FAILURE, payload: err.response.data });
+      dispatch({ type: LOGIN_FAILURE, payload: err.response.data.error });
+    });
+};
+
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+
+export const signUp = creds => dispatch => {
+  dispatch({ type: SIGNUP_REQUEST });
+  return axios
+    .post('http://localhost:5200/api/signup', creds)
+    .then(res => {
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data.payload });
+    })
+    .catch(err => {
+      dispatch({ type: SIGNUP_FAILURE, payload: err.response.data.error });
     });
 };
 

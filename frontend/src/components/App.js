@@ -3,14 +3,14 @@ import { Route } from 'react-router-dom';
 
 import PrivateRoute from '../utilities/PrivateRoute';
 
-import Login from './Login';
+import LogInSignUp from './LogInSignUp';
 import Main from './Main';
 
 const App = () => {
   return (
     <div className='app'>
-      <Route path='/login' component={Login} />
-      <PrivateRoute path='/' component={Main} />
+      <Route path='/loginsignup' component={LogInSignUp} />
+      <PrivateRoute exact path='/' component={Main} />
     </div>
   );
 };

@@ -1,19 +1,36 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({
+  component: Component,
+  saltyToken,
+  errorStatusCode,
+  ...rest
+}) => {
+  console.log('private route');
   return (
     <Route
       {...rest}
       render={routeProps =>
-        localStorage.getItem('saltyTrollsToken') ? (
+        saltyToken && errorStatusCode !== 403 ? (
           <Component {...routeProps} />
         ) : (
-          <Redirect to='/login' />
+          <Redirect to='/loginsignup' />
         )
       }
     />
   );
 };
 
-export default PrivateRoute;
+const mapStateToProps = ({ saltyToken, errorStatusCode }) => ({
+  saltyToken,
+  errorStatusCode
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(PrivateRoute)
+);
