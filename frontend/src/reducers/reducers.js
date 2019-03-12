@@ -2,9 +2,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  FETCH_REQUEST,
-  FETCH_SUCCESS,
-  FETCH_FAILURE,
+  SUBMIT_COMMENT_REQUEST,
+  SUBMIT_COMMENT_SUCCESS,
+  SUBMIT_COMMENT_FAILURE,
   ADD_FRIEND_REQUEST,
   ADD_FRIEND_SUCCESS,
   ADD_FRIEND_FAILURE,
@@ -18,7 +18,8 @@ import {
 
 const initialState = {
   loggingIn: false,
-  fetchingFriends: false,
+  submittingComment: false,
+  commentSentiment: '',
   addingFriend: false,
   editingFriend: false,
   deletingFriend: false,
@@ -35,17 +36,17 @@ export default (state = initialState, action) => {
     case LOGIN_FAILURE:
       return { ...state, loggingIn: false, error: action.payload };
 
-    case FETCH_REQUEST:
-      return { ...state, fetchingFriends: true, error: null };
-    case FETCH_SUCCESS:
+    case SUBMIT_COMMENT_REQUEST:
+      return { ...state, submittingComment: true, error: null };
+    case SUBMIT_COMMENT_SUCCESS:
       return {
         ...state,
-        fetchingFriends: false,
-        friends: action.payload,
+        submittingComment: false,
+        commentSentiment: action.payload,
         error: null
       };
-    case FETCH_FAILURE:
-      return { ...state, fetchingFriends: false, error: action.payload };
+    case SUBMIT_COMMENT_FAILURE:
+      return { ...state, submittingComment: false, error: action.payload };
 
     case ADD_FRIEND_REQUEST:
       return { ...state, addingFriend: true, error: null };

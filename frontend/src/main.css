@@ -133,3 +133,25 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.nav-bar {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1.5em;
+  background: #fbfbef;
+  color: #62cdfd;
+  padding: 10px 20px 7px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.active-nav-link {
+  background: #62cdfd;
+  color: #fbfbef;
+}

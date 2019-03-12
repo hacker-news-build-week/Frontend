@@ -13,7 +13,7 @@ const Login = ({ history, login }) => {
     login({ username: username.value, password: password.value }).then(() => {
       username.setValue('');
       password.setValue('');
-      history.push('/');
+      history.push('/sentiment');
     });
   };
 

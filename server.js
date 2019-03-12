@@ -7,7 +7,7 @@ const app = express();
 const token =
   'eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ';
 
-let friends = [
+let comments = [
   {
     id: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
     name: 'Stream',
@@ -81,8 +81,7 @@ function authenticator(req, res, next) {
 
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
-  if (username === 'Lambda School' && password === 'i<3Lambd4') {
-    // What does req.loggedIn do? It's not part of the payload, so it doesn't seem to be passed back to the main app, and it loggedIn doesn't seem to be referenced here in the server either...
+  if (username === 'sentiment' && password === 'hackernews') {
     req.loggedIn = true;
     res.status(200).json({
       payload: token
@@ -90,14 +89,14 @@ app.post('/api/login', (req, res) => {
   } else {
     res
       .status(403)
-      .json({ error: 'Username or Password incorrect. Please see Readme' });
+      .json({ error: 'Username or Password incorrect. Please see README.md.' });
   }
 });
 
-app.get('/api/friends', authenticator, (req, res) => {
+app.post('/api/comments', authenticator, (req, res) => {
   setTimeout(() => {
-    res.send(friends);
-  }, 1000);
+    res.send(comments);
+  }, 500);
 });
 
 app.get('/api/friends/:id', authenticator, (req, res) => {
