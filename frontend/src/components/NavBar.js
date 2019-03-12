@@ -13,18 +13,18 @@ export const NavBar = () => {
         <div>Sentiment Analysis</div>
       </NavLink>
       <NavLink
-        to='/hnsearch'
+        to='/hncommentanalysis'
         className='nav-link'
         activeClassName='active-nav-link'
       >
-        <div>Hacker News Search</div>
+        <div>HN Comment Analysis</div>
       </NavLink>
       <NavLink
         to='/hnleaderboards'
         className='nav-link'
         activeClassName='active-nav-link'
       >
-        <div>Hacker News Leaderboards</div>
+        <div>HN Leaderboards</div>
       </NavLink>
     </div>
   );

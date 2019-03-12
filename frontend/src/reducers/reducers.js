@@ -19,6 +19,7 @@ import {
 const initialState = {
   loggingIn: false,
   submittingComment: false,
+  // It's possible that this doesn't need to be stored. Right now, I'm not sure how to recieve a response from the server and display the response without storing it in state.
   commentSentiment: '',
   addingFriend: false,
   editingFriend: false,

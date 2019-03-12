@@ -9,9 +9,9 @@ const Main = () => {
     <div className='main'>
       <NavBar />
       <PrivateRoute path='/sentiment' component={Sentiment} />
-      {/* <PrivateRoute path='/hnsearch' component={HNSearch} />
-      <PrivateRoute path='/hnsearch/:username' component={SingleUser} />
-      <PrivateRoute path='/hnsearch/:topic' component={SingleTopic} />
+      {/* <PrivateRoute path='/hnanalysis' component={HNSAnalysis} />
+      <PrivateRoute path='/hnanalysis/:username' component={SingleUser} />
+      <PrivateRoute path='/hnanalysis/:topic' component={SingleTopic} />
       <PrivateRoute path='/hnleaderboards' component={HNLeaderboards} /> */}
     </div>
   );
