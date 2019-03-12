@@ -7,6 +7,20 @@ const app = express();
 const token =
   'eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ';
 
+let commentAnalysis = [
+  'very positive',
+  'positive',
+  'neutral',
+  'negative',
+  'very negative'
+];
+
+const commentAnalysisRandom = () => {
+  return commentAnalysis[
+    Math.floor(Math.random() * Math.floor(commentAnalysis.length))
+  ];
+};
+
 let comments = [
   {
     id: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
@@ -95,8 +109,8 @@ app.post('/api/login', (req, res) => {
 
 app.post('/api/comments', authenticator, (req, res) => {
   setTimeout(() => {
-    res.send(comments);
-  }, 500);
+    res.send(commentAnalysisRandom());
+  }, 250);
 });
 
 app.get('/api/friends/:id', authenticator, (req, res) => {
