@@ -11,8 +11,8 @@ const Main = () => {
       <NavBar />
       <PrivateRoute path='/sentiment' component={Sentiment} />
       <PrivateRoute path='/hnanalysis' component={HNAnalysis} />
-      {/* <PrivateRoute path='/hnanalysis/:username' component={SingleUser} />
-      <PrivateRoute path='/hnanalysis/:topic' component={SingleTopic} />
+      {/* <PrivateRoute path='/hnanalysis/:username' component={HNSingleUser} />
+      <PrivateRoute path='/hnanalysis/:topic' component={HNSingleTopic} />
       <PrivateRoute path='/hnleaderboards' component={HNLeaderboards} /> */}
     </div>
   );
