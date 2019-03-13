@@ -8,6 +8,7 @@ export const Comment = ({
   saltyUserId,
   commentId,
   commentText,
+  commentSentiment,
   editComment,
   deleteComment
 }) => {
@@ -45,7 +46,11 @@ export const Comment = ({
 
   return (
     <div className='comment'>
-      {!commentForm && <p>{commentText}</p>}
+      {!commentForm && (
+        <p>
+          {commentText} {commentSentiment}
+        </p>
+      )}
       {commentForm && (
         <form onSubmit={requestEditComment}>
           <input

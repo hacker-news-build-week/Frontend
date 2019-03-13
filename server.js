@@ -53,7 +53,7 @@ let saltyComments = [
   }
 ];
 
-let commentAnalysis = ['positive', 'neutral', 'negative'];
+const commentAnalysis = ['positive', 'negative'];
 
 const commentAnalysisRandom = () => {
   return commentAnalysis[
@@ -101,12 +101,10 @@ app.post('/api/login', (req, res) => {
 app.post('/api/signup', (req, res) => {
   const newUser = { saltyUserId: uuid.v4(), ...req.body };
 
-  // const usernameCheck = saltyUsers.filter(
-  //   userObject => userObject.username === username
-  // );
-
+  // Need to check if username is already taken:
   saltyUsers = [...saltyUsers, newUser];
 
+  // This needs to return an error if username is already taken:
   res.status(200).json({});
 });
 
@@ -117,6 +115,37 @@ app.get('/api/saltyComments/:saltyUserId', authenticator, (req, res) => {
   )[0].comments;
   setTimeout(() => {
     res.send(saltyUserComments);
+  }, 100);
+});
+
+app.post('/api/saltyComments', authenticator, (req, res) => {
+  const { saltyUserId, newCommentText } = req.body;
+
+  const saltyUserComments = saltyComments.filter(
+    commentsObject => commentsObject.saltyUserId === req.body.saltyUserId
+  )[0].comments;
+
+  const newComment = {
+    commentId: uuid.v4(),
+    commentText: newCommentText,
+    commentSentiment: commentAnalysisRandom()
+  };
+
+  const saltyUserCommentsAdd = [...saltyUserComments, newComment];
+
+  saltyComments = saltyComments.map(commentsObject => {
+    if (commentsObject.saltyUserId === saltyUserId) {
+      return {
+        saltyUserId: commentsObject.saltyUserId,
+        comments: saltyUserCommentsAdd
+      };
+    } else {
+      return commentsObject;
+    }
+  });
+
+  setTimeout(() => {
+    res.send(saltyUserCommentsAdd);
   }, 100);
 });
 
