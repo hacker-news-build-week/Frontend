@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  INITIALIZE,
   LOGOUT,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
@@ -61,6 +62,9 @@ export default (state = initialState, action) => {
       };
     case LOGIN_FAILURE:
       return { ...state, loggingIn: false, errorStatusCode: action.payload };
+
+    case INITIALIZE:
+      return { ...state, saltyUserId: action.payload };
 
     case LOGOUT:
       return { ...initialState };

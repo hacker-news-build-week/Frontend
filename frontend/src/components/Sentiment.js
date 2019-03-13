@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useInput } from '../utilities/useInput';
-import { fetchComments, addComment } from '../actions/actions';
+import { initialize, fetchComments, addComment } from '../actions/actions';
 import NavBar from './NavBar';
 import Comment from './Comment';
 
 const Sentiment = ({
+  initialize,
   fetchComments,
   comments,
   history,
@@ -19,9 +20,17 @@ const Sentiment = ({
   const [commentCount, setCommentCount] = useState(0);
 
   useEffect(() => {
-    if (comments.length === 0) {
+    if (localStorage.getItem('saltyUserId')) {
+      saltyUserId = localStorage.getItem('saltyUserId');
+      initialize(saltyUserId);
       fetchComments(saltyUserId);
+    } else {
+      history.push('/loginsignup');
     }
+
+    // if (comments.length === 0) {
+    //   fetchComments(saltyUserId);
+    // }
   }, []);
 
   const requestAddComment = e => {
@@ -30,6 +39,7 @@ const Sentiment = ({
       saltyUserId,
       newCommentText: newCommentText.value
     });
+    newCommentText.setValue('');
     setCommentCount(commentCount + 1);
   };
   return (
@@ -78,5 +88,5 @@ const mapStateToProps = ({ comments, saltyUserId, addingComment }) => ({
 
 export default connect(
   mapStateToProps,
-  { fetchComments, addComment }
+  { initialize, fetchComments, addComment }
 )(Sentiment);

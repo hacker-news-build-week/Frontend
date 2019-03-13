@@ -17,6 +17,12 @@ export const logIn = creds => dispatch => {
     });
 };
 
+export const INITIALIZE = 'INITIALIZE';
+
+export const initialize = saltyUserId => {
+  return { type: INITIALIZE, payload: saltyUserId };
+};
+
 export const LOGOUT = 'LOGOUT';
 
 export const logOut = () => {
