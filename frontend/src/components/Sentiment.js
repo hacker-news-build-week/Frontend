@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { useInput } from '../utilities/useInput';
 import { addComment } from '../actions/actions';
+import NavBar from './NavBar';
 
 const Sentiment = ({ saltyUserId, addComment, addingComment }) => {
   const commentText = useInput();
@@ -20,6 +21,7 @@ const Sentiment = ({ saltyUserId, addComment, addingComment }) => {
 
   return (
     <div className='sentiment'>
+      <NavBar />
       <h1>What is sentiment analysis?</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quis

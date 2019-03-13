@@ -30,7 +30,6 @@ import {
 
 const initialState = {
   loggingIn: false,
-  saltyToken: localStorage.getItem('saltyToken'),
   saltyUserId: '',
   signingUp: false,
   fetchingComments: false,

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { useInput } from '../utilities/useInput';
 import { submitHNUsername } from '../actions/actions';
+import NavBar from './NavBar';
 
 const HNAnalysis = ({ submitHNUsername, hNUsernameSentiment }) => {
   const username = useInput();
@@ -16,6 +17,7 @@ const HNAnalysis = ({ submitHNUsername, hNUsernameSentiment }) => {
 
   return (
     <div className='hnanalysis-form'>
+      <NavBar />
       <h2>Enter a Hacker News Username below:</h2>
       <div className='username-div'>
         <form onSubmit={requestSubmitHNUsername}>

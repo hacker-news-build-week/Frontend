@@ -18,7 +18,8 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
     }).then(() => {
       usernameLogIn.setValue('');
       passwordLogIn.setValue('');
-      history.push('/sentiment');
+      console.log('test');
+      history.push('/');
     });
   };
 
