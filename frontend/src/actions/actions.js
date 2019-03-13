@@ -64,7 +64,7 @@ export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
-// comment is an object that contains saltyUserId and commentText
+// comment is an object that contains saltyUserId and newCommentText
 export const addComment = comment => dispatch => {
   dispatch({ type: ADD_COMMENT_REQUEST });
   return axiosAuth()
@@ -82,7 +82,7 @@ export const DELETE_COMMENT_REQUEST = 'DELETE_COMMENT_REQUEST';
 export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
 export const DELETE_COMMENT_FAILURE = 'DELETE_COMMENT_FAILURE';
 
-// comment is an object that contains saltyUserId and commentId:
+// comment is an object that contains saltyUserId and commentIdDelete:
 export const deleteComment = comment => dispatch => {
   dispatch({ type: DELETE_COMMENT_REQUEST });
   return axiosAuth()
@@ -105,7 +105,7 @@ export const EDIT_COMMENT_REQUEST = 'EDIT_COMMENT_REQUEST';
 export const EDIT_COMMENT_SUCCESS = 'EDIT_COMMENT_SUCCESS';
 export const EDIT_COMMENT_FAILURE = 'EDIT_COMMENT_FAILURE';
 
-// comment is an object that contains saltyUserId, commentId, and commentText:
+// comment is an object that contains saltyUserId, commentId, and editCommentText:
 export const editComment = comment => dispatch => {
   dispatch({ type: EDIT_COMMENT_REQUEST });
   return axiosAuth()

@@ -31,18 +31,10 @@ export const Comment = ({
     editComment({
       saltyUserId,
       commentId,
-      commentText: editCommentText.value
+      editCommentText: editCommentText.value
     });
     setCommentForm(!editCommentForm);
   };
-
-  //   const requestDeleteComment = e => {
-  //     e.preventDefault();
-  //     deleteComment({
-  //       saltyUserId,
-  //       commentId
-  //     });
-  //   };
 
   return (
     <div className='comment'>

@@ -120,19 +120,15 @@ app.get('/api/saltyComments/:saltyUserId', authenticator, (req, res) => {
 
 app.post('/api/saltyComments', authenticator, (req, res) => {
   const { saltyUserId, newCommentText } = req.body;
-
   const saltyUserComments = saltyComments.filter(
     commentsObject => commentsObject.saltyUserId === req.body.saltyUserId
   )[0].comments;
-
   const newComment = {
     commentId: uuid.v4(),
     commentText: newCommentText,
     commentSentiment: commentAnalysisRandom()
   };
-
   const saltyUserCommentsAdd = [...saltyUserComments, newComment];
-
   saltyComments = saltyComments.map(commentsObject => {
     if (commentsObject.saltyUserId === saltyUserId) {
       return {
@@ -143,7 +139,7 @@ app.post('/api/saltyComments', authenticator, (req, res) => {
       return commentsObject;
     }
   });
-
+  // Needs error code:
   setTimeout(() => {
     res.send(saltyUserCommentsAdd);
   }, 100);
@@ -172,15 +168,39 @@ app.delete('/api/saltyComments', authenticator, (req, res) => {
   }, 100);
 });
 
-// app.get('/api/friends/:id', authenticator, (req, res) => {
-//   const friend = friends.find(f => f.id == req.params.id);
+app.put('/api/saltyComments', authenticator, (req, res) => {
+  const { saltyUserId, commentId, editCommentText } = req.body;
+  const saltyUserComments = saltyComments.filter(
+    commentsObject => commentsObject.saltyUserId === saltyUserId
+  )[0].comments;
 
-//   if (friend) {
-//     res.status(200).json(friend);
-//   } else {
-//     res.status(404).send({ msg: 'Friend not found' });
-//   }
-// });
+  const saltyUserCommentsEdit = saltyUserComments.map(commentObject => {
+    if (commentObject.commentId === commentId) {
+      return {
+        commentId: commentObject.commentId,
+        commentText: editCommentText,
+        commentSentiment: commentAnalysisRandom()
+      };
+    } else {
+      return commentObject;
+    }
+  });
+
+  saltyComments = saltyComments.map(commentsObject => {
+    if (commentsObject.saltyUserId === saltyUserId) {
+      return {
+        saltyUserId: commentsObject.saltyUserId,
+        comments: saltyUserCommentsEdit
+      };
+    } else {
+      return commentsObject;
+    }
+  });
+
+  setTimeout(() => {
+    res.send(saltyUserCommentsEdit);
+  }, 100);
+});
 
 app.post('/api/friends', authenticator, (req, res) => {
   const friend = { id: uuid.v4(), ...req.body };
