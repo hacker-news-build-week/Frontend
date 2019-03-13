@@ -20,7 +20,7 @@ const Sentiment = ({
 
   useEffect(() => {
     if (comments.length === 0) {
-      console.log(saltyUserId);
+      console.log('comments.length: ', comments.length);
       fetchComments(saltyUserId);
     }
   }, []);
@@ -33,7 +33,6 @@ const Sentiment = ({
     });
     setCommentCount(commentCount + 1);
   };
-  console.log('comments: ', comments);
   return (
     <div className='sentiment'>
       <NavBar history={history} />

@@ -13,7 +13,7 @@ export const logIn = creds => dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
-      dispatch({ type: LOGIN_FAILURE, payload: err.response.data });
+      dispatch({ type: LOGIN_FAILURE, payload: err.response });
     });
 };
 
@@ -35,7 +35,7 @@ export const signUp = creds => dispatch => {
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
-      dispatch({ type: SIGNUP_FAILURE, payload: err.response.data });
+      dispatch({ type: SIGNUP_FAILURE, payload: err.response });
     });
 };
 
@@ -72,7 +72,7 @@ export const addComment = comment => dispatch => {
       dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: ADD_COMMENT_FAILURE, payload: err.response.data });
+      dispatch({ type: ADD_COMMENT_FAILURE, payload: err.response });
     });
 };
 
@@ -85,12 +85,18 @@ export const DELETE_COMMENT_FAILURE = 'DELETE_COMMENT_FAILURE';
 export const deleteComment = comment => dispatch => {
   dispatch({ type: DELETE_COMMENT_REQUEST });
   return axiosAuth()
-    .delete('http://localhost:5200/api/saltyComments', comment)
+    .delete('http://localhost:5200/api/saltyComments', {
+      data: {
+        saltyUserId: comment.saltyUserId,
+        commentIdDelete: comment.commentIdDelete
+      }
+    })
     .then(res => {
+      console.log('delete res: ', res);
       dispatch({ type: DELETE_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: DELETE_COMMENT_FAILURE, payload: err.response.data });
+      dispatch({ type: DELETE_COMMENT_FAILURE, payload: err.response });
     });
 };
 
@@ -108,7 +114,7 @@ export const editComment = comment => dispatch => {
       dispatch({ type: EDIT_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: EDIT_COMMENT_FAILURE, payload: err.response.data });
+      dispatch({ type: EDIT_COMMENT_FAILURE, payload: err.response });
     });
 };
 
@@ -125,7 +131,7 @@ export const submitHNUsername = HNusername => dispatch => {
       dispatch({ type: SUBMIT_HNUSERNAME_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: SUBMIT_HNUSERNAME_FAILURE, payload: err.response.data });
+      dispatch({ type: SUBMIT_HNUSERNAME_FAILURE, payload: err.response });
     });
 };
 
@@ -144,7 +150,7 @@ export const fetchSaliestHNUsers = () => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_SALTIEST_HNUSERS_FAILURE,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
@@ -167,7 +173,7 @@ export const fetchSaliestHNTopics = () => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_SALTIEST_HNTOPICS_FAILURE,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };

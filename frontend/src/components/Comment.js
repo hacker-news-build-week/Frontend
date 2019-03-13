@@ -42,6 +42,7 @@ export const Comment = ({
   //       commentId
   //     });
   //   };
+
   return (
     <div className='comment'>
       {!commentForm && <p>{commentText}</p>}
@@ -60,7 +61,11 @@ export const Comment = ({
       )}
       <div className='controls'>
         <button onClick={editCommentForm}>Edit Comment</button>
-        <div onClick={() => deleteComment(saltyUserId, commentId)}>
+        <div
+          onClick={() =>
+            deleteComment({ saltyUserId, commentIdDelete: commentId })
+          }
+        >
           <i className='fas fa-times' />
         </div>
       </div>
