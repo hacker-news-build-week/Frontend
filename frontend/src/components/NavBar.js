@@ -1,7 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export const NavBar = () => {
+import { logOut } from '../actions/actions';
+
+export const NavBar = ({ logOut, history }) => {
+  const submitLogout = () => {
+    logOut();
+    history.push('/loginsignup');
+  };
+
   return (
     <div className='nav-bar'>
       <NavLink
@@ -26,8 +34,12 @@ export const NavBar = () => {
       >
         <div>HN Leaderboards</div>
       </NavLink>
+      <div onClick={submitLogout}>Logout</div>
     </div>
   );
 };
 
-export default NavBar;
+export default connect(
+  null,
+  { logOut }
+)(NavBar);

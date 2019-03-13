@@ -5,7 +5,7 @@ import { useInput } from '../utilities/useInput';
 import { submitHNUsername } from '../actions/actions';
 import NavBar from './NavBar';
 
-const HNAnalysis = ({ submitHNUsername, hNUsernameSentiment }) => {
+const HNAnalysis = ({ history, submitHNUsername, hNUsernameSentiment }) => {
   const username = useInput();
 
   const requestSubmitHNUsername = e => {
@@ -17,7 +17,7 @@ const HNAnalysis = ({ submitHNUsername, hNUsernameSentiment }) => {
 
   return (
     <div className='hnanalysis-form'>
-      <NavBar />
+      <NavBar history={history} />
       <h2>Enter a Hacker News Username below:</h2>
       <div className='username-div'>
         <form onSubmit={requestSubmitHNUsername}>

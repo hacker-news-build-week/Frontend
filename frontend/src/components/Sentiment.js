@@ -6,7 +6,7 @@ import { useInput } from '../utilities/useInput';
 import { addComment } from '../actions/actions';
 import NavBar from './NavBar';
 
-const Sentiment = ({ saltyUserId, addComment, addingComment }) => {
+const Sentiment = ({ history, saltyUserId, addComment, addingComment }) => {
   const commentText = useInput();
   const [commentCount, setCommentCount] = useState(0);
 
@@ -21,7 +21,7 @@ const Sentiment = ({ saltyUserId, addComment, addingComment }) => {
 
   return (
     <div className='sentiment'>
-      <NavBar />
+      <NavBar history={history} />
       <h1>What is sentiment analysis?</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quis

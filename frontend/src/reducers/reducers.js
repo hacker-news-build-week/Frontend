@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
@@ -60,6 +61,9 @@ export default (state = initialState, action) => {
       };
     case LOGIN_FAILURE:
       return { ...state, loggingIn: false, errorStatusCode: action.payload };
+
+    case LOGOUT:
+      return { ...state, ...initialState };
 
     case SIGNUP_REQUEST:
       return { ...state, signingUp: true, errorStatusCode: null };
