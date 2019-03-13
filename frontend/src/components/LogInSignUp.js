@@ -18,7 +18,6 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
     }).then(() => {
       usernameLogIn.setValue('');
       passwordLogIn.setValue('');
-      console.log('test');
       history.push('/');
     });
   };
@@ -36,8 +35,7 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
         console.log('You have signed up. Please log in.');
         usernameSignUp.setValue('');
         passwordSignUp.setValue('');
-        // This probably either won't work or is unnecessary:
-        history.push('/loginsignup');
+        alert('Please log in with your new username and password.');
       }
     });
   };

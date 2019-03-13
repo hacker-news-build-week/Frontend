@@ -14,7 +14,7 @@ export const NavBar = ({ logOut, history }) => {
     <div className='nav-bar'>
       <NavLink
         exact
-        to='/sentiment'
+        to='/'
         className='nav-link'
         activeClassName='active-nav-link'
       >

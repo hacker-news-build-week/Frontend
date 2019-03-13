@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosAuth = () => {
-  const token = localStorage.getItem('saltyTrollsToken');
+  const token = localStorage.getItem('saltyToken');
   return axios.create({
     headers: {
       'Content-Type': 'application/json',

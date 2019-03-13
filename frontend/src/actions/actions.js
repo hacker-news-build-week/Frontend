@@ -48,8 +48,9 @@ export const FETCH_COMMENTS_FAILURE = 'FETCH_COMMENTS_FAILURE';
 export const fetchComments = saltyUserId => dispatch => {
   dispatch({ type: FETCH_COMMENTS_REQUEST });
   return axiosAuth()
-    .get('http://localhost:5200/api/saltyComments', saltyUserId)
+    .get(`http://localhost:5200/api/saltyComments/${saltyUserId}`)
     .then(res => {
+      console.log('fetch res: ', res.data);
       dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -98,7 +99,7 @@ export const EDIT_COMMENT_REQUEST = 'EDIT_COMMENT_REQUEST';
 export const EDIT_COMMENT_SUCCESS = 'EDIT_COMMENT_SUCCESS';
 export const EDIT_COMMENT_FAILURE = 'EDIT_COMMENT_FAILURE';
 
-// comment is an object that contains saltyUserId and commentId:
+// comment is an object that contains saltyUserId, commentId, and commentText:
 export const editComment = comment => dispatch => {
   dispatch({ type: EDIT_COMMENT_REQUEST });
   return axiosAuth()
