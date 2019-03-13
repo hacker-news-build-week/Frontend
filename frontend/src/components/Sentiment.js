@@ -20,7 +20,6 @@ const Sentiment = ({
 
   useEffect(() => {
     if (comments.length === 0) {
-      console.log('comments.length: ', comments.length);
       fetchComments(saltyUserId);
     }
   }, []);

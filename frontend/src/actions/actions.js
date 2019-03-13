@@ -10,7 +10,7 @@ export const logIn = creds => dispatch => {
   return axios
     .post('http://localhost:5200/api/login', creds)
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAILURE, payload: err.response });
@@ -32,9 +32,11 @@ export const signUp = creds => dispatch => {
   return axios
     .post('http://localhost:5200/api/signup', creds)
     .then(res => {
+      console.log('res: ', res);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
+      console.log('err: ', err);
       dispatch({ type: SIGNUP_FAILURE, payload: err.response });
     });
 };
@@ -50,7 +52,6 @@ export const fetchComments = saltyUserId => dispatch => {
   return axiosAuth()
     .get(`http://localhost:5200/api/saltyComments/${saltyUserId}`)
     .then(res => {
-      console.log('fetch res: ', res.data);
       dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -92,7 +93,6 @@ export const deleteComment = comment => dispatch => {
       }
     })
     .then(res => {
-      console.log('delete res: ', res);
       dispatch({ type: DELETE_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {

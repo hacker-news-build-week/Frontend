@@ -61,6 +61,12 @@ const commentAnalysisRandom = () => {
   ];
 };
 
+// app.post('/api/comments', authenticator, (req, res) => {
+//   setTimeout(() => {
+//     res.send(commentAnalysisRandom());
+//   }, 100);
+// });
+
 app.use(bodyParser.json());
 
 app.use(cors());
@@ -76,10 +82,14 @@ function authenticator(req, res, next) {
 
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
-  if (username === 'sentiment' && password === 'hackernews') {
+  const saltyUser = saltyUsers.filter(
+    userObject => userObject.username === username
+  )[0];
+  if (password === saltyUser.password) {
     req.loggedIn = true;
     res.status(200).json({
-      payload: token
+      saltyToken: token,
+      saltyUserId: saltyUser.saltyUserId
     });
   } else {
     res
@@ -88,10 +98,16 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-app.post('/api/comments', authenticator, (req, res) => {
-  setTimeout(() => {
-    res.send(commentAnalysisRandom());
-  }, 100);
+app.post('/api/signup', (req, res) => {
+  const newUser = { saltyUserId: uuid.v4(), ...req.body };
+
+  // const usernameCheck = saltyUsers.filter(
+  //   userObject => userObject.username === username
+  // );
+
+  saltyUsers = [...saltyUsers, newUser];
+
+  res.status(200).json({});
 });
 
 // I used req.params because I couldn't figure out how to pass saltyUserId in a .get(), and I got errors when I used .post().
@@ -111,9 +127,6 @@ app.delete('/api/saltyComments', authenticator, (req, res) => {
   )[0].comments;
   const saltyUserCommentsDelete = saltyUserComments.filter(
     comment => comment.commentId !== commentIdDelete
-  );
-  const index = saltyComments.findIndex(
-    commentsObject => (commentsObject.saltyUserId = saltyUserId)
   );
   saltyComments = saltyComments.map(commentsObject => {
     if (commentsObject.saltyUserId === saltyUserId) {

@@ -31,7 +31,7 @@ import {
 
 const initialState = {
   loggingIn: false,
-  saltyUserId: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
+  saltyUserId: '',
   signingUp: false,
   fetchingComments: false,
   comments: [],
@@ -56,14 +56,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        saltyUserId: action.payload,
+        saltyUserId: action.payload.saltyUserId,
         errorStatusCode: null
       };
     case LOGIN_FAILURE:
       return { ...state, loggingIn: false, errorStatusCode: action.payload };
 
     case LOGOUT:
-      return { ...state, ...initialState };
+      return { ...initialState };
 
     case SIGNUP_REQUEST:
       return { ...state, signingUp: true, errorStatusCode: null };
