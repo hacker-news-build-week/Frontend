@@ -26,12 +26,12 @@ let saltyComments = [
     comments: [
       {
         commentId: 'c3bf9686-9023-4496-b72a-53d13b837c98',
-        comment: 'I like sand.',
+        commentText: 'I like sand.',
         commentSentiment: 'positive'
       },
       {
         commentId: '2677f21f-b371-4a1c-8c40-c614c0eb36a5',
-        comment: "I don't like breezes.",
+        commentText: "I don't like breezes.",
         commentSentiment: 'negative'
       }
     ]
@@ -41,12 +41,12 @@ let saltyComments = [
     comments: [
       {
         commentId: '39a853e0-e241-4b60-89e1-7b3dc702590f',
-        comment: 'I hate soup',
+        commentText: 'I hate soup',
         commentSentiment: 'negative'
       },
       {
         commentId: '67e29dfe-959e-491c-ac6d-6ead940c9e4f',
-        comment: 'I love sandwiches',
+        commentText: 'I love sandwiches',
         commentSentiment: 'positive'
       }
     ]

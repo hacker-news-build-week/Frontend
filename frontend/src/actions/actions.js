@@ -54,7 +54,7 @@ export const fetchComments = saltyUserId => dispatch => {
       dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: FETCH_COMMENTS_FAILURE, payload: err.response.data });
+      dispatch({ type: FETCH_COMMENTS_FAILURE, payload: err.response });
     });
 };
 

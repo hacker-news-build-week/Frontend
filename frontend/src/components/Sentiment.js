@@ -15,7 +15,7 @@ const Sentiment = ({
   addComment,
   addingComment
 }) => {
-  const commentText = useInput();
+  const newCommentText = useInput();
   const [commentCount, setCommentCount] = useState(0);
 
   useEffect(() => {
@@ -29,11 +29,11 @@ const Sentiment = ({
     e.preventDefault();
     addComment({
       saltyUserId,
-      commentText: commentText.value
+      newCommentText: newCommentText.value
     });
     setCommentCount(commentCount + 1);
   };
-
+  console.log('comments: ', comments);
   return (
     <div className='sentiment'>
       <NavBar history={history} />
@@ -49,8 +49,8 @@ const Sentiment = ({
         <input
           required
           type='text'
-          value={commentText.value}
-          onChange={commentText.updateValue}
+          value={newCommentText.value}
+          onChange={newCommentText.updateValue}
           placeholder='Enter text here'
         />
         <button type='submit'>Analyze Sentiment</button>
@@ -63,7 +63,7 @@ const Sentiment = ({
           <Comment
             key={comment.commentId}
             commentId={comment.commentId}
-            commentText={commentText}
+            commentText={comment.commentText}
           />
         ))}
       </div>
