@@ -16,9 +16,13 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
       username: usernameLogIn.value,
       password: passwordLogIn.value
     }).then(() => {
-      usernameLogIn.setValue('');
-      passwordLogIn.setValue('');
-      history.push('/');
+      if (errorStatusCode) {
+        alert('username or password incorrect');
+      } else {
+        usernameLogIn.setValue('');
+        passwordLogIn.setValue('');
+        history.push('/');
+      }
     });
   };
 
@@ -29,10 +33,8 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
       password: passwordSignUp.value
     }).then(() => {
       if (errorStatusCode) {
-        console.log('Error signing up. Please try again.');
-        alert(errorStatusCode);
+        alert('Error signing up. Please try again.');
       } else {
-        console.log('You have signed up. Please log in.');
         usernameSignUp.setValue('');
         passwordSignUp.setValue('');
         alert('Please log in with your new username and password.');

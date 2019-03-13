@@ -8,6 +8,7 @@ export const Comment = ({
   saltyUserId,
   commentId,
   commentText,
+  commentSentiment,
   editComment,
   deleteComment
 }) => {
@@ -30,21 +31,18 @@ export const Comment = ({
     editComment({
       saltyUserId,
       commentId,
-      commentText: editCommentText.value
+      editCommentText: editCommentText.value
     });
     setCommentForm(!editCommentForm);
   };
 
-  //   const requestDeleteComment = e => {
-  //     e.preventDefault();
-  //     deleteComment({
-  //       saltyUserId,
-  //       commentId
-  //     });
-  //   };
   return (
     <div className='comment'>
-      {!commentForm && <p>{commentText}</p>}
+      {!commentForm && (
+        <p>
+          {commentText} {commentSentiment}
+        </p>
+      )}
       {commentForm && (
         <form onSubmit={requestEditComment}>
           <input
@@ -60,7 +58,11 @@ export const Comment = ({
       )}
       <div className='controls'>
         <button onClick={editCommentForm}>Edit Comment</button>
-        <div onClick={() => deleteComment(saltyUserId, commentId)}>
+        <div
+          onClick={() =>
+            deleteComment({ saltyUserId, commentIdDelete: commentId })
+          }
+        >
           <i className='fas fa-times' />
         </div>
       </div>

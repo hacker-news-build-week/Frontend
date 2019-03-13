@@ -10,11 +10,17 @@ export const logIn = creds => dispatch => {
   return axios
     .post('http://localhost:5200/api/login', creds)
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: LOGIN_FAILURE, payload: err.response.data });
+      dispatch({ type: LOGIN_FAILURE, payload: err.response });
     });
+};
+
+export const INITIALIZE = 'INITIALIZE';
+
+export const initialize = saltyUserId => {
+  return { type: INITIALIZE, payload: saltyUserId };
 };
 
 export const LOGOUT = 'LOGOUT';
@@ -32,10 +38,12 @@ export const signUp = creds => dispatch => {
   return axios
     .post('http://localhost:5200/api/signup', creds)
     .then(res => {
+      console.log('res: ', res);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
-      dispatch({ type: SIGNUP_FAILURE, payload: err.response.data });
+      console.log('err: ', err);
+      dispatch({ type: SIGNUP_FAILURE, payload: err.response });
     });
 };
 
@@ -50,7 +58,6 @@ export const fetchComments = saltyUserId => dispatch => {
   return axiosAuth()
     .get(`http://localhost:5200/api/saltyComments/${saltyUserId}`)
     .then(res => {
-      console.log('fetch res: ', res.data);
       dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -63,7 +70,7 @@ export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
-// comment is an object that contains saltyUserId and commentText
+// comment is an object that contains saltyUserId and newCommentText
 export const addComment = comment => dispatch => {
   dispatch({ type: ADD_COMMENT_REQUEST });
   return axiosAuth()
@@ -72,7 +79,7 @@ export const addComment = comment => dispatch => {
       dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: ADD_COMMENT_FAILURE, payload: err.response.data });
+      dispatch({ type: ADD_COMMENT_FAILURE, payload: err.response });
     });
 };
 
@@ -81,16 +88,21 @@ export const DELETE_COMMENT_REQUEST = 'DELETE_COMMENT_REQUEST';
 export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
 export const DELETE_COMMENT_FAILURE = 'DELETE_COMMENT_FAILURE';
 
-// comment is an object that contains saltyUserId and commentId:
+// comment is an object that contains saltyUserId and commentIdDelete:
 export const deleteComment = comment => dispatch => {
   dispatch({ type: DELETE_COMMENT_REQUEST });
   return axiosAuth()
-    .delete('http://localhost:5200/api/saltyComments', comment)
+    .delete('http://localhost:5200/api/saltyComments', {
+      data: {
+        saltyUserId: comment.saltyUserId,
+        commentIdDelete: comment.commentIdDelete
+      }
+    })
     .then(res => {
       dispatch({ type: DELETE_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: DELETE_COMMENT_FAILURE, payload: err.response.data });
+      dispatch({ type: DELETE_COMMENT_FAILURE, payload: err.response });
     });
 };
 
@@ -99,7 +111,7 @@ export const EDIT_COMMENT_REQUEST = 'EDIT_COMMENT_REQUEST';
 export const EDIT_COMMENT_SUCCESS = 'EDIT_COMMENT_SUCCESS';
 export const EDIT_COMMENT_FAILURE = 'EDIT_COMMENT_FAILURE';
 
-// comment is an object that contains saltyUserId, commentId, and commentText:
+// comment is an object that contains saltyUserId, commentId, and editCommentText:
 export const editComment = comment => dispatch => {
   dispatch({ type: EDIT_COMMENT_REQUEST });
   return axiosAuth()
@@ -108,7 +120,7 @@ export const editComment = comment => dispatch => {
       dispatch({ type: EDIT_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: EDIT_COMMENT_FAILURE, payload: err.response.data });
+      dispatch({ type: EDIT_COMMENT_FAILURE, payload: err.response });
     });
 };
 
@@ -125,7 +137,7 @@ export const submitHNUsername = HNusername => dispatch => {
       dispatch({ type: SUBMIT_HNUSERNAME_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: SUBMIT_HNUSERNAME_FAILURE, payload: err.response.data });
+      dispatch({ type: SUBMIT_HNUSERNAME_FAILURE, payload: err.response });
     });
 };
 
@@ -144,7 +156,7 @@ export const fetchSaliestHNUsers = () => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_SALTIEST_HNUSERS_FAILURE,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
@@ -167,7 +179,7 @@ export const fetchSaliestHNTopics = () => dispatch => {
     .catch(err => {
       dispatch({
         type: FETCH_SALTIEST_HNTOPICS_FAILURE,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
