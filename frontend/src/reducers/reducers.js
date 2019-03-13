@@ -31,7 +31,7 @@ import {
 
 const initialState = {
   loggingIn: false,
-  saltyUserId: '',
+  saltyUserId: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
   signingUp: false,
   fetchingComments: false,
   comments: [],

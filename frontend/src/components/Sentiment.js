@@ -1,24 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useInput } from '../utilities/useInput';
-import { addComment } from '../actions/actions';
+import { fetchComments, addComment } from '../actions/actions';
 import NavBar from './NavBar';
+import Comment from './Comment';
 
-const Sentiment = ({ history, saltyUserId, addComment, addingComment }) => {
-  const commentText = useInput();
+const Sentiment = ({
+  fetchComments,
+  comments,
+  history,
+  saltyUserId,
+  addComment,
+  addingComment
+}) => {
+  const newCommentText = useInput();
   const [commentCount, setCommentCount] = useState(0);
+
+  useEffect(() => {
+    if (comments.length === 0) {
+      console.log(saltyUserId);
+      fetchComments(saltyUserId);
+    }
+  }, []);
 
   const requestAddComment = e => {
     e.preventDefault();
     addComment({
       saltyUserId,
-      commentText: commentText.value
+      newCommentText: newCommentText.value
     });
     setCommentCount(commentCount + 1);
   };
-
+  console.log('comments: ', comments);
   return (
     <div className='sentiment'>
       <NavBar history={history} />
@@ -34,8 +49,8 @@ const Sentiment = ({ history, saltyUserId, addComment, addingComment }) => {
         <input
           required
           type='text'
-          value={commentText.value}
-          onChange={commentText.updateValue}
+          value={newCommentText.value}
+          onChange={newCommentText.updateValue}
           placeholder='Enter text here'
         />
         <button type='submit'>Analyze Sentiment</button>
@@ -43,16 +58,26 @@ const Sentiment = ({ history, saltyUserId, addComment, addingComment }) => {
       {commentCount >= 3 && addingComment === false && (
         <Link to='/hnanalysis'>Ready to try it?</Link>
       )}
+      <div className='comments-list'>
+        {comments.map(comment => (
+          <Comment
+            key={comment.commentId}
+            commentId={comment.commentId}
+            commentText={comment.commentText}
+          />
+        ))}
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ saltyUserId, addingComment }) => ({
+const mapStateToProps = ({ comments, saltyUserId, addingComment }) => ({
+  comments,
   saltyUserId,
   addingComment
 });
 
 export default connect(
   mapStateToProps,
-  { addComment }
+  { fetchComments, addComment }
 )(Sentiment);
