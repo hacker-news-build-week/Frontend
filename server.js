@@ -7,6 +7,52 @@ const app = express();
 const token =
   'eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ';
 
+let saltyUsers = [
+  {
+    saltyUserId: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
+    username: 'chris',
+    password: 'xyz'
+  },
+  {
+    saltyUserId: '37b81aec-6af0-426d-9d4c-9fa5cc1e0d8c',
+    username: 'ronald',
+    password: 'abc'
+  }
+];
+
+let saltyComments = [
+  {
+    saltyUserId: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
+    comments: [
+      {
+        commentId: 'c3bf9686-9023-4496-b72a-53d13b837c98',
+        comment: 'I really hate soup',
+        commentSentiment: 'very negative'
+      },
+      {
+        commentId: '2677f21f-b371-4a1c-8c40-c614c0eb36a5',
+        comment: 'I love sandwiches',
+        commentSentiment: 'positive'
+      }
+    ]
+  },
+  {
+    saltyUserId: '37b81aec-6af0-426d-9d4c-9fa5cc1e0d8c',
+    comments: [
+      {
+        commentId: '39a853e0-e241-4b60-89e1-7b3dc702590f',
+        comment: 'I love soup',
+        commentSentiment: 'positive'
+      },
+      {
+        commentId: '67e29dfe-959e-491c-ac6d-6ead940c9e4f',
+        comment: 'I hate sandwiches',
+        commentSentiment: 'negative'
+      }
+    ]
+  }
+];
+
 let commentAnalysis = [
   'very positive',
   'positive',

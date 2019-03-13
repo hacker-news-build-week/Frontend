@@ -5,7 +5,7 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-export const login = creds => dispatch => {
+export const logIn = creds => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
   return axios
     .post('http://localhost:5200/api/login', creds)
@@ -17,50 +17,156 @@ export const login = creds => dispatch => {
     });
 };
 
-export const SUBMIT_COMMENT_REQUEST = 'SUBMIT_COMMENT_REQUEST';
-export const SUBMIT_COMMENT_SUCCESS = 'SUBMIT_COMMENT_SUCCESS';
-export const SUBMIT_COMMENT_FAILURE = 'SUBMIT_COMMENT_FAILURE';
+export const LOGOUT = 'LOGOUT';
 
-export const submitComment = comment => dispatch => {
-  dispatch({ type: SUBMIT_COMMENT_REQUEST });
-  return axiosAuth()
-    .post('http://localhost:5200/api/comments', comment)
+export const logOut = () => {
+  return { type: LOGOUT };
+};
+
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+
+export const signUp = creds => dispatch => {
+  dispatch({ type: SIGNUP_REQUEST });
+  return axios
+    .post('http://localhost:5200/api/signup', creds)
     .then(res => {
-      dispatch({ type: SUBMIT_COMMENT_SUCCESS, payload: res.data });
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data.payload });
     })
     .catch(err => {
-      dispatch({ type: SUBMIT_COMMENT_FAILURE, payload: err.response.data });
+      dispatch({ type: SIGNUP_FAILURE, payload: err.response.data });
     });
 };
 
-export const SUBMIT_USERNAME_REQUEST = 'SUBMIT_USERNAME_REQUEST';
-export const SUBMIT_USERNAME_SUCCESS = 'SUBMIT_USERNAME_SUCCESS';
-export const SUBMIT_USERNAME_FAILURE = 'SUBMIT_USERNAME_FAILURE';
+// Fetchs saved comments for salty user:
+export const FETCH_COMMENTS_REQUEST = 'FETCH_COMMENTS_REQUEST';
+export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
+export const FETCH_COMMENTS_FAILURE = 'FETCH_COMMENTS_FAILURE';
 
-export const submitUsername = username => dispatch => {
-  dispatch({ type: SUBMIT_USERNAME_REQUEST });
+// I pass in saltyUserId because comments are saved for each salty user:
+export const fetchComments = saltyUserId => dispatch => {
+  dispatch({ type: FETCH_COMMENTS_REQUEST });
   return axiosAuth()
-    .post('http://localhost:5200/api/usernames', username)
+    .get('http://localhost:5200/api/saltyComments', saltyUserId)
     .then(res => {
-      dispatch({ type: SUBMIT_USERNAME_SUCCESS, payload: res.data });
+      dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: SUBMIT_USERNAME_FAILURE, payload: err.response.data });
+      dispatch({ type: FETCH_COMMENTS_FAILURE, payload: err.response.data });
     });
 };
 
-export const SUBMIT_TOPIC_REQUEST = 'SUBMIT_TOPIC_REQUEST';
-export const SUBMIT_TOPIC_SUCCESS = 'SUBMIT_TOPIC_SUCCESS';
-export const SUBMIT_TOPIC_FAILURE = 'SUBMIT_TOPIC_FAILURE';
+// Salty user adds a new comment:
+export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
+export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
+export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
-export const submitTopic = topic => dispatch => {
-  dispatch({ type: SUBMIT_TOPIC_REQUEST });
+// comment is an object that contains saltyUserId and commentText
+export const addComment = comment => dispatch => {
+  dispatch({ type: ADD_COMMENT_REQUEST });
   return axiosAuth()
-    .post('http://localhost:5200/api/topics', topic)
+    .post('http://localhost:5200/api/saltyComments', comment)
     .then(res => {
-      dispatch({ type: SUBMIT_TOPIC_SUCCESS, payload: res.data });
+      dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: SUBMIT_TOPIC_FAILURE, payload: err.response.data });
+      dispatch({ type: ADD_COMMENT_FAILURE, payload: err.response.data });
+    });
+};
+
+// Salty user deletes one of their comments:
+export const DELETE_COMMENT_REQUEST = 'DELETE_COMMENT_REQUEST';
+export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
+export const DELETE_COMMENT_FAILURE = 'DELETE_COMMENT_FAILURE';
+
+// comment is an object that contains saltyUserId and commentId:
+export const deleteComment = comment => dispatch => {
+  dispatch({ type: DELETE_COMMENT_REQUEST });
+  return axiosAuth()
+    .delete('http://localhost:5200/api/saltyComments', comment)
+    .then(res => {
+      dispatch({ type: DELETE_COMMENT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: DELETE_COMMENT_FAILURE, payload: err.response.data });
+    });
+};
+
+// Salty user edits one of their comments:
+export const EDIT_COMMENT_REQUEST = 'EDIT_COMMENT_REQUEST';
+export const EDIT_COMMENT_SUCCESS = 'EDIT_COMMENT_SUCCESS';
+export const EDIT_COMMENT_FAILURE = 'EDIT_COMMENT_FAILURE';
+
+// comment is an object that contains saltyUserId and commentId:
+export const editComment = comment => dispatch => {
+  dispatch({ type: EDIT_COMMENT_REQUEST });
+  return axiosAuth()
+    .put('http://localhost:5200/api/saltyComments', comment)
+    .then(res => {
+      dispatch({ type: EDIT_COMMENT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: EDIT_COMMENT_FAILURE, payload: err.response.data });
+    });
+};
+
+// Salty user can submit a HN username:
+export const SUBMIT_HNUSERNAME_REQUEST = 'SUBMIT_HNUSERNAME_REQUEST';
+export const SUBMIT_HNUSERNAME_SUCCESS = 'SUBMIT_HNUSERNAME_SUCCESS';
+export const SUBMIT_HNUSERNAME_FAILURE = 'SUBMIT_HNUSERNAME_FAILURE';
+
+export const submitHNUsername = HNusername => dispatch => {
+  dispatch({ type: SUBMIT_HNUSERNAME_REQUEST });
+  return axiosAuth()
+    .post('http://localhost:5200/api/HNusernames', HNusername)
+    .then(res => {
+      dispatch({ type: SUBMIT_HNUSERNAME_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: SUBMIT_HNUSERNAME_FAILURE, payload: err.response.data });
+    });
+};
+
+// Fetchs top 10 saltiest HN users:
+export const FETCH_SALTIEST_HNUSERS_REQUEST = 'FETCH_SALTIEST_HNUSERS_REQUEST';
+export const FETCH_SALTIEST_HNUSERS_SUCCESS = 'FETCH_SALTIEST_HNUSERS_SUCCESS';
+export const FETCH_SALTIEST_HNUSERS_FAILURE = 'FETCH_SALTIEST_HNUSERS_FAILURE';
+
+export const fetchSaliestHNUsers = () => dispatch => {
+  dispatch({ type: FETCH_SALTIEST_HNUSERS_REQUEST });
+  return axiosAuth()
+    .get('http://localhost:5200/api/saltiestHNUsers')
+    .then(res => {
+      dispatch({ type: FETCH_SALTIEST_HNUSERS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: FETCH_SALTIEST_HNUSERS_FAILURE,
+        payload: err.response.data
+      });
+    });
+};
+
+// Fetchs 10 topics (strings) whose posts are the saltiest:
+export const FETCH_SALTIEST_HNTOPICS_REQUEST =
+  'FETCH_SALTIEST_HNTOPICS_REQUEST';
+export const FETCH_SALTIEST_HNTOPICS_SUCCESS =
+  'FETCH_SALTIEST_HNTOPICS_SUCCESS';
+export const FETCH_SALTIEST_HNTOPICS_FAILURE =
+  'FETCH_SALTIEST_HNTOPICS_FAILURE';
+
+export const fetchSaliestHNTopics = () => dispatch => {
+  dispatch({ type: FETCH_SALTIEST_HNTOPICS_REQUEST });
+  return axiosAuth()
+    .get('http://localhost:5200/api/saltiestHNTopics')
+    .then(res => {
+      dispatch({ type: FETCH_SALTIEST_HNTOPICS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({
+        type: FETCH_SALTIEST_HNTOPICS_FAILURE,
+        payload: err.response.data
+      });
     });
 };
