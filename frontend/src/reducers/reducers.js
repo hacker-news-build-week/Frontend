@@ -40,8 +40,10 @@ const initialState = {
   deletingComment: false,
   editingComment: false,
   submittingHNUsername: false,
-  hNUsernameSentiment: '',
+  hNUsername: '',
   hNUsernameComments: [],
+  hNUsernameTotal: '',
+  hNUsernameSentiment: '',
   fetchingSaltiestHNUsers: false,
   saltiestHNUsers: [],
   fetchingSaltiestHNTopics: false,
@@ -146,7 +148,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         submittingHNUsername: false,
-        hNUsernameSentiment: action.payload,
+        hNUsername: action.payload.username,
+        hNUsernameComments: action.payload.comments,
+        hNUsernameTotal: action.payload.total,
+        hNUsernameSentiment: action.payload.sentiment,
         errorStatusCode: null
       };
     case SUBMIT_HNUSERNAME_FAILURE:
