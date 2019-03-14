@@ -8,7 +8,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const logIn = creds => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
   return axios
-    .post('https://sentimentserver.herokuapp.com/api/login', creds)
+    .post('https://sentimentserver.netlify.com/api/login', creds)
     .then(res => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
@@ -36,7 +36,7 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 export const signUp = creds => dispatch => {
   dispatch({ type: SIGNUP_REQUEST });
   return axios
-    .post('https://sentimentserver.herokuapp.com/api/signup', creds)
+    .post('https://sentimentserver.netlify.com/api/signup', creds)
     .then(res => {
       console.log('res: ', res);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.payload });
@@ -56,9 +56,7 @@ export const FETCH_COMMENTS_FAILURE = 'FETCH_COMMENTS_FAILURE';
 export const fetchComments = saltyUserId => dispatch => {
   dispatch({ type: FETCH_COMMENTS_REQUEST });
   return axiosAuth()
-    .get(
-      `https://sentimentserver.herokuapp.com/api/saltyComments/${saltyUserId}`
-    )
+    .get(`https://sentimentserver.netlify.com/api/saltyComments/${saltyUserId}`)
     .then(res => {
       dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: res.data });
     })
@@ -76,7 +74,7 @@ export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 export const addComment = comment => dispatch => {
   dispatch({ type: ADD_COMMENT_REQUEST });
   return axiosAuth()
-    .post('https://sentimentserver.herokuapp.com/api/saltyComments', comment)
+    .post('https://sentimentserver.netlify.com/api/saltyComments', comment)
     .then(res => {
       dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
     })
@@ -94,7 +92,7 @@ export const DELETE_COMMENT_FAILURE = 'DELETE_COMMENT_FAILURE';
 export const deleteComment = comment => dispatch => {
   dispatch({ type: DELETE_COMMENT_REQUEST });
   return axiosAuth()
-    .delete('https://sentimentserver.herokuapp.com/api/saltyComments', {
+    .delete('https://sentimentserver.netlify.com/api/saltyComments', {
       data: {
         saltyUserId: comment.saltyUserId,
         commentIdDelete: comment.commentIdDelete
@@ -117,7 +115,7 @@ export const EDIT_COMMENT_FAILURE = 'EDIT_COMMENT_FAILURE';
 export const editComment = comment => dispatch => {
   dispatch({ type: EDIT_COMMENT_REQUEST });
   return axiosAuth()
-    .put('https://sentimentserver.herokuapp.com/api/saltyComments', comment)
+    .put('https://sentimentserver.netlify.com/api/saltyComments', comment)
     .then(res => {
       dispatch({ type: EDIT_COMMENT_SUCCESS, payload: res.data });
     })
@@ -133,11 +131,9 @@ export const SUBMIT_HNUSERNAME_FAILURE = 'SUBMIT_HNUSERNAME_FAILURE';
 
 export const submitHNUsername = HNusername => dispatch => {
   dispatch({ type: SUBMIT_HNUSERNAME_REQUEST });
-  // return axiosAuth()
-  return axios
-    .get(`https://hn-comments.herokuapp.com/user_lookup/${HNusername}`)
+  return axiosAuth()
+    .post('https://sentimentserver.netlify.com/api/HNusernames', HNusername)
     .then(res => {
-      console.log('HN res: ', res);
       dispatch({ type: SUBMIT_HNUSERNAME_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -153,7 +149,7 @@ export const FETCH_SALTIEST_HNUSERS_FAILURE = 'FETCH_SALTIEST_HNUSERS_FAILURE';
 export const fetchSaliestHNUsers = () => dispatch => {
   dispatch({ type: FETCH_SALTIEST_HNUSERS_REQUEST });
   return axiosAuth()
-    .get('https://sentimentserver.herokuapp.com/api/saltiestHNUsers')
+    .get('https://sentimentserver.netlify.com/api/saltiestHNUsers')
     .then(res => {
       dispatch({ type: FETCH_SALTIEST_HNUSERS_SUCCESS, payload: res.data });
     })
@@ -176,7 +172,7 @@ export const FETCH_SALTIEST_HNTOPICS_FAILURE =
 export const fetchSaliestHNTopics = () => dispatch => {
   dispatch({ type: FETCH_SALTIEST_HNTOPICS_REQUEST });
   return axiosAuth()
-    .get('https://sentimentserver.herokuapp.com/api/saltiestHNTopics')
+    .get('https://sentimentserver.netlify.com/api/saltiestHNTopics')
     .then(res => {
       dispatch({ type: FETCH_SALTIEST_HNTOPICS_SUCCESS, payload: res.data });
     })

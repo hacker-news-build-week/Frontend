@@ -36,11 +36,27 @@ export const Comment = ({
     setCommentForm(!editCommentForm);
   };
 
+  // {!commentForm && (
+  //       <p>
+  //         {commentText} {commentSent}
+  //       </p>)}
+
   return (
     <div className='comment'>
-      {!commentForm && (
+      {!commentForm && commentSent === 'positive' ? (
         <p>
-          {commentText} {commentSent}
+          {commentText}
+          <i className='far fa-smile' />
+        </p>
+      ) : !commentForm && commentSent === 'neutral' ? (
+        <p>
+          {commentText}
+          <i className='far fa-meh' />
+        </p>
+      ) : (
+        <p>
+          {commentText}
+          <i className='far fa-angry' />
         </p>
       )}
       {commentForm && (
