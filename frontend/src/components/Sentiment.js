@@ -72,7 +72,7 @@ const Sentiment = ({
             key={comment.commentId}
             commentId={comment.commentId}
             commentText={comment.commentText}
-            commentSentiment={comment.commentSentiment}
+            commentSent={comment.commentSent}
           />
         ))}
       </div>
