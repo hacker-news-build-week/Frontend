@@ -66,6 +66,7 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
       <form onSubmit={requestSignUp}>
         <input
           required
+          autoComplete='off'
           type='text'
           value={usernameSignUp.value}
           name='usernameSignUp'
@@ -74,6 +75,7 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
         />
         <input
           required
+          autoComplete='off'
           type='password'
           value={passwordSignUp.value}
           name='passwordSignUp'

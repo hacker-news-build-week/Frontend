@@ -6,6 +6,7 @@ import PrivateRoute from '../utilities/PrivateRoute';
 import LogInSignUp from './LogInSignUp';
 import Sentiment from './Sentiment';
 import HNAnalysis from './HNAnalysis';
+import HNLeaderboards from './HNLeaderboards';
 
 const App = () => {
   return (
@@ -13,9 +14,8 @@ const App = () => {
       <Route path='/loginsignup' component={LogInSignUp} />
       <PrivateRoute exact path='/' component={Sentiment} />
       <PrivateRoute path='/hnanalysis' component={HNAnalysis} />
-      {/* <PrivateRoute path='/hnanalysis/:username' component={HNSingleUser} />
-      <PrivateRoute path='/hnanalysis/:topic' component={HNSingleTopic} />
-      <PrivateRoute path='/hnleaderboards' component={HNLeaderboards} /> */}
+      {/* <PrivateRoute path='/hnanalysis/:username' component={HNSingleUser} /> */}
+      <PrivateRoute path='/hnleaderboards' component={HNLeaderboards} />
     </div>
   );
 };
