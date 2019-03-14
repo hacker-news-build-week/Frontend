@@ -1,4 +1,5 @@
 const uuid = require('uuid');
+const vader = require('vader-sentiment');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -15,8 +16,8 @@ let saltyUsers = [
   },
   {
     saltyUserId: '37b81aec-6af0-426d-9d4c-9fa5cc1e0d8c',
-    username: 'ronald',
-    password: 'abcd'
+    username: 'dirtyrichkidd',
+    password: 'cockroachesandcher'
   }
 ];
 
@@ -25,14 +26,31 @@ let saltyComments = [
     saltyUserId: 'a4a5c672-9696-4523-b57d-a3db47b6422d',
     comments: [
       {
-        commentId: 'c3bf9686-9023-4496-b72a-53d13b837c98',
-        commentText: 'I like sand.',
-        commentSentiment: 'positive'
+        commentCom: 0.3612,
+        commentId: '094e8980-1e51-4199-82a3-436f718af16b',
+        commentNeg: 0,
+        commentNeu: 0.444,
+        commentPos: 0.556,
+        commentSent: 'positive',
+        commentText: 'I feel like singing.'
       },
       {
-        commentId: '2677f21f-b371-4a1c-8c40-c614c0eb36a5',
-        commentText: "I don't like breezes.",
-        commentSentiment: 'negative'
+        commentCom: 0,
+        commentId: '729876cc-cc97-4f3c-b3b7-3199d7083cfa',
+        commentNeg: 0,
+        commentNeu: 1,
+        commentPos: 0,
+        commentSent: 'neutral',
+        commentText: 'have you read this book?'
+      },
+      {
+        commentCom: -0.6249,
+        commentId: '76b77b84-7877-4800-b777-4e350eed8435',
+        commentNeg: 0.506,
+        commentNeu: 0.494,
+        commentPos: 0,
+        commentSent: 'negative',
+        commentText: 'Sand is the absolute worst.'
       }
     ]
   },
@@ -40,32 +58,52 @@ let saltyComments = [
     saltyUserId: '37b81aec-6af0-426d-9d4c-9fa5cc1e0d8c',
     comments: [
       {
-        commentId: '39a853e0-e241-4b60-89e1-7b3dc702590f',
-        commentText: 'I hate soup',
-        commentSentiment: 'negative'
+        commentCom: -0.3612,
+        commentId: 'b062c6fa-b310-4c73-b4a5-2ca4a8340ff2',
+        commentNeg: 0.714,
+        commentNeu: 0.286,
+        commentPos: 0,
+        commentSent: 'negative',
+        commentText: 'iPhone Sucks'
       },
       {
-        commentId: '67e29dfe-959e-491c-ac6d-6ead940c9e4f',
-        commentText: 'I love sandwiches',
-        commentSentiment: 'positive'
+        commentCom: 0,
+        commentId: '411ae444-6d79-40a7-a74a-5bf77b40f780',
+        commentNeg: 0,
+        commentNeu: 1,
+        commentPos: 0,
+        commentSent: 'neutral',
+        commentText: 'Hello'
+      },
+      {
+        commentCom: 0.6249,
+        commentId: 'e73f3a14-da4f-41b1-9561-956c5a3a1cd8',
+        commentNeg: 0,
+        commentNeu: 0.328,
+        commentPos: 0.672,
+        commentSent: 'positive',
+        commentText: 'Android is awesome'
       }
     ]
   }
 ];
 
-// const checkSentiment = commentText => {
+const checkSentiment = commentText => {
+  const sentObj = vader.SentimentIntensityAnalyzer.polarity_scores(commentText);
+  let sentimentCalc = '';
+  sentObj.compound >= 0.05
+    ? (sentimentCalc = 'positive')
+    : sentObj.compound <= -0.05
+    ? (sentimentCalc = 'negative')
+    : (sentimentCalc = 'neutral');
 
-//   doSomething
-
-//   return commentSentiment;
-// }
-
-const commentAnalysis = ['positive', 'negative'];
-
-const commentAnalysisRandom = () => {
-  return commentAnalysis[
-    Math.floor(Math.random() * Math.floor(commentAnalysis.length))
-  ];
+  return {
+    commentNeg: sentObj.neg,
+    commentNeu: sentObj.neu,
+    commentPos: sentObj.pos,
+    commentCom: sentObj.compound,
+    commentSent: sentimentCalc
+  };
 };
 
 app.use(bodyParser.json());
@@ -125,10 +163,11 @@ app.post('/api/saltyComments', authenticator, (req, res) => {
   const saltyUserComments = saltyComments.filter(
     commentsObject => commentsObject.saltyUserId === req.body.saltyUserId
   )[0].comments;
+  const comSentObj = checkSentiment(newCommentText);
   const newComment = {
+    ...comSentObj,
     commentId: uuid.v4(),
-    commentText: newCommentText,
-    commentSentiment: commentAnalysisRandom()
+    commentText: newCommentText
   };
   const saltyUserCommentsAdd = [...saltyUserComments, newComment];
   saltyComments = saltyComments.map(commentsObject => {
@@ -175,13 +214,13 @@ app.put('/api/saltyComments', authenticator, (req, res) => {
   const saltyUserComments = saltyComments.filter(
     commentsObject => commentsObject.saltyUserId === saltyUserId
   )[0].comments;
-
+  const comSentObj = checkSentiment(editCommentText);
   const saltyUserCommentsEdit = saltyUserComments.map(commentObject => {
     if (commentObject.commentId === commentId) {
       return {
+        ...comSentObj,
         commentId: commentObject.commentId,
-        commentText: editCommentText,
-        commentSentiment: commentAnalysisRandom()
+        commentText: editCommentText
       };
     } else {
       return commentObject;
@@ -204,30 +243,30 @@ app.put('/api/saltyComments', authenticator, (req, res) => {
   }, 100);
 });
 
-app.post('/api/friends', authenticator, (req, res) => {
-  const friend = { id: uuid.v4(), ...req.body };
-  friends = [...friends, friend];
-  res.send(friends);
-});
+// app.post('/api/friends', authenticator, (req, res) => {
+//   const friend = { id: uuid.v4(), ...req.body };
+//   friends = [...friends, friend];
+//   res.send(friends);
+// });
 
-app.put('/api/friends/:id', authenticator, (req, res) => {
-  const { id } = req.params;
+// app.put('/api/friends/:id', authenticator, (req, res) => {
+//   const { id } = req.params;
 
-  const friendIndex = friends.findIndex(f => f.id == id);
+//   const friendIndex = friends.findIndex(f => f.id == id);
 
-  if (friendIndex > -1) {
-    const friend = { ...friends[friendIndex], ...req.body };
+//   if (friendIndex > -1) {
+//     const friend = { ...friends[friendIndex], ...req.body };
 
-    friends = [
-      ...friends.slice(0, friendIndex),
-      friend,
-      ...friends.slice(friendIndex + 1)
-    ];
-    res.send(friends);
-  } else {
-    res.status(404).send({ msg: 'Friend not found' });
-  }
-});
+//     friends = [
+//       ...friends.slice(0, friendIndex),
+//       friend,
+//       ...friends.slice(friendIndex + 1)
+//     ];
+//     res.send(friends);
+//   } else {
+//     res.status(404).send({ msg: 'Friend not found' });
+//   }
+// });
 
 // app.delete('/api/friends/:id', authenticator, (req, res) => {
 //   const { id } = req.params;

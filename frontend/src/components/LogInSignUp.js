@@ -55,7 +55,7 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
         />
         <input
           required
-          type='text'
+          type='password'
           value={passwordLogIn.value}
           name='passwordLogIn'
           onChange={passwordLogIn.updateValue}
@@ -74,7 +74,7 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
         />
         <input
           required
-          type='text'
+          type='password'
           value={passwordSignUp.value}
           name='passwordSignUp'
           onChange={passwordSignUp.updateValue}
