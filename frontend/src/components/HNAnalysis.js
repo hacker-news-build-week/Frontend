@@ -10,9 +10,7 @@ const HNAnalysis = ({ history, submitHNUsername, hNUsernameSentiment }) => {
 
   const requestSubmitHNUsername = e => {
     e.preventDefault();
-    submitHNUsername({
-      username: username.value
-    });
+    submitHNUsername(username.value);
   };
 
   return (
