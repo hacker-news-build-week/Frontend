@@ -1,6 +1,8 @@
 import axios from 'axios';
 import axiosAuth from '../utilities/axiosAuth';
 
+import uuid from 'uuid';
+
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -76,6 +78,16 @@ export const addComment = comment => dispatch => {
   return axiosAuth()
     .post('http://localhost:5200/api/saltyComments', comment)
     .then(res => {
+      console.log(uuid.v4());
+      console.log(uuid.v4());
+      console.log(uuid.v4());
+      console.log(uuid.v4());
+      console.log(uuid.v4());
+      console.log(uuid.v4());
+      console.log(uuid.v4());
+      console.log(uuid.v4());
+      console.log(uuid.v4());
+      console.log(uuid.v4());
       dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {

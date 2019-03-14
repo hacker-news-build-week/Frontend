@@ -27,10 +27,6 @@ const Sentiment = ({
     } else {
       history.push('/loginsignup');
     }
-
-    // if (comments.length === 0) {
-    //   fetchComments(saltyUserId);
-    // }
   }, []);
 
   const requestAddComment = e => {
