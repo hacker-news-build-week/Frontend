@@ -53,6 +53,13 @@ let saltyComments = [
   }
 ];
 
+// const checkSentiment = commentText => {
+
+//   doSomething
+
+//   return commentSentiment;
+// }
+
 const commentAnalysis = ['positive', 'negative'];
 
 const commentAnalysisRandom = () => {
@@ -60,12 +67,6 @@ const commentAnalysisRandom = () => {
     Math.floor(Math.random() * Math.floor(commentAnalysis.length))
   ];
 };
-
-// app.post('/api/comments', authenticator, (req, res) => {
-//   setTimeout(() => {
-//     res.send(commentAnalysisRandom());
-//   }, 100);
-// });
 
 app.use(bodyParser.json());
 
@@ -100,9 +101,10 @@ app.post('/api/login', (req, res) => {
 
 app.post('/api/signup', (req, res) => {
   const newUser = { saltyUserId: uuid.v4(), ...req.body };
-
+  const newComments = { saltyUserId: newUser.saltyUserId, comments: [] };
   // Need to check if username is already taken:
   saltyUsers = [...saltyUsers, newUser];
+  saltyComments = [...saltyComments, newComments];
 
   // This needs to return an error if username is already taken:
   res.status(200).json({});
