@@ -38,17 +38,23 @@ const HNAnalysis = ({
             placeholder='Hacker News username'
           />
           <button type='submit' className='hn-user'>
-            Analyze Sentiment
+            Search for User
           </button>
         </form>
       </div>
 
       {errorStatusCode && (
         <div className='error'>
-          <h2>
+          <h2 className='error'>
             There doesn't seem to be a Hacker News user by that name in our
-            dataset. Please consider checking the{' '}
-            <Link to='/hnleaderboards'>HN Leaderboards</Link> for inspiration.
+            dataset.
+          </h2>
+          <h2 className='error'>
+            Please consider checking the{' '}
+            <Link to='/hnleaderboards' className='link'>
+              HN Leaderboards
+            </Link>{' '}
+            for inspiration.
           </h2>
         </div>
       )}
@@ -61,27 +67,27 @@ const HNAnalysis = ({
 
       {hNUsername && (
         <div>
-          <h3>Hacker News User: {hNUsername}</h3>
+          <h1>Hacker News User: {hNUsername}</h1>
           {hNUsernameSentiment >= 0.05 ? (
-            <p>
-              Overall Sentiment:
+            <h2>
+              Overall Sentiment:&nbsp;
               {hNUsernameSentiment}
               <i className='far fa-smile' />
-            </p>
+            </h2>
           ) : hNUsernameSentiment <= -0.05 ? (
-            <p>
-              Overall Sentiment:
+            <h2>
+              Overall Sentiment:&nbsp;
               {hNUsernameSentiment}
               <i className='far fa-angry' />
-            </p>
+            </h2>
           ) : (
-            <p>
-              Overall Sentiment:
+            <h2>
+              Overall Sentiment:&nbsp;
               {hNUsernameSentiment}
               <i className='far fa-meh' />
-            </p>
+            </h2>
           )}
-          <h4>Comment Sampler</h4>
+          <h2>Comment Sampler</h2>
           <div className='comments-list'>
             {hNUsernameComments.map((comment, index) => (
               <HNComment

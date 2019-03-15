@@ -102,16 +102,19 @@ const Sentiment = ({
           )}
         </div>
       </form>
-      <div className='comments-list'>
-        {comments.map(comment => (
-          <Comment
-            key={comment.commentId}
-            commentId={comment.commentId}
-            commentText={comment.commentText}
-            commentSent={comment.commentSent}
-          />
-        ))}
-      </div>
+      {comments.length > 0 && (
+        <div className='comments-list'>
+          <h1>Comment Collection</h1>
+          {comments.map(comment => (
+            <Comment
+              key={comment.commentId}
+              commentId={comment.commentId}
+              commentText={comment.commentText}
+              commentSent={comment.commentSent}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

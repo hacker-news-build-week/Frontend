@@ -44,6 +44,8 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
 
   return (
     <div className='login-signup'>
+      <h1 className='title'>Saltiest Hacker News Trolls</h1>
+      <h2 className='subtitle'>Sentiment Analysis</h2>
       <form onSubmit={requestLogIn}>
         <input
           required
@@ -61,8 +63,15 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
           onChange={passwordLogIn.updateValue}
           placeholder='password'
         />
-        <button type='submit'>Log In</button>
+        <button type='submit' className='edit'>
+          Log In
+        </button>
       </form>
+      <img
+        src='https://i.ytimg.com/vi/Y7tnhz95q2o/maxresdefault.jpg'
+        alt='troll doll collecion'
+      />
+      <h2>Not yet a member? Sign up now (it's free):</h2>
       <form onSubmit={requestSignUp}>
         <input
           required
@@ -82,7 +91,9 @@ const LogInSignUp = ({ logIn, signUp, errorStatusCode, history }) => {
           onChange={passwordSignUp.updateValue}
           placeholder='password'
         />
-        <button type='submit'>Sign Up</button>
+        <button type='submit' className='signup'>
+          Sign Up
+        </button>
       </form>
     </div>
   );
