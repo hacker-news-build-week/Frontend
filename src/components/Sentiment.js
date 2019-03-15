@@ -29,6 +29,18 @@ const Sentiment = ({
     }
   }, []);
 
+  const onEnterPress = e => {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      e.preventDefault();
+      addComment({
+        saltyUserId,
+        newCommentText: newCommentText.value
+      });
+      newCommentText.setValue('');
+      setCommentCount(commentCount + 1);
+    }
+  };
+
   const requestAddComment = e => {
     e.preventDefault();
     addComment({
@@ -65,23 +77,27 @@ const Sentiment = ({
       </p>
       <h2>You can try out sentiment analysis by entering text below.</h2>
       <h2>We'll Keep track of your comments (/lyrics/missives) for you.</h2>
-      <form onSubmit={requestAddComment}>
-        <input
+      <form onSubmit={requestAddComment} className='add-comment'>
+        <textarea
+          autoFocus
           required
           type='text'
           value={newCommentText.value}
           onChange={newCommentText.updateValue}
+          onKeyDown={onEnterPress}
           placeholder='Enter text here'
+          className='comment-box'
         />
         <button type='submit' className='analyze'>
           Analyze Sentiment
-        </button>
+        </button>{' '}
+        {commentCount >= 3 && addingComment === false && (
+          <Link to='/hnanalysis' className='cta'>
+            Try sentiment analysis on Hacker News users!
+          </Link>
+        )}
       </form>
-      {commentCount >= 3 && addingComment === false && (
-        <Link to='/hnanalysis'>
-          Try sentiment analysis on Hacker News users!
-        </Link>
-      )}
+
       <div className='comments-list'>
         {comments.map(comment => (
           <Comment

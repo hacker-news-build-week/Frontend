@@ -13,23 +13,46 @@ h2 {
 
 .far {
   font-size: 1.6em;
-  color: yellow;
+  color: #ffff99;
+  line-height: 0.5;
+  padding: 10px 0 0 10px;
 }
 
 .comment {
   display: flex;
-  margin: 5px;
+  justify-content: space-between;
+  margin: 15px 0;
   padding: 5px;
   background: @orange;
   border-radius: 5px;
   font-size: 10px;
+  p {
+    padding: 0 10px;
+  }
+}
+
+textarea {
+  resize: vertical;
+  outline: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  border-radius: 5px;
+  margin: 20px 0 12px 0;
+  padding: 5px 8px;
+}
+
+.comment-box {
+  width: 98%;
+  min-height: 30px;
+  height: 80px;
 }
 
 input {
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 20px;
   border-radius: 5px;
-  padding: 3px;
-  margin: 8px 8px 8px 0;
+  //   margin: 20px 0 12px 0;
+  padding: 5px 8px;
 }
 
 button {
@@ -45,16 +68,29 @@ button {
   font-weight: 700;
 }
 
+.add-comment {
+  display: flex;
+  flex-direction: column;
+}
+
 .analyze {
+  width: 20%;
+  background: #5c5cd6;
+  color: @white;
+}
+
+.hn-user {
   background: #5c5cd6;
   color: @white;
 }
 
 .edit {
+  margin: 3px;
   background: #33cc33;
   color: @white;
 }
 .delete {
+  margin: 3px;
   background: #cc3333;
   color: @white;
 }

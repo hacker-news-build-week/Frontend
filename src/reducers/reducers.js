@@ -42,8 +42,6 @@ const initialState = {
   hNUsernameSentiment: '',
   fetchingSaltiestHNUsers: false,
   saltiestHNUsers: [],
-  fetchingSaltiestHNTopics: false,
-  saltiestHNTopics: [],
   errorStatusCode: null
 };
 

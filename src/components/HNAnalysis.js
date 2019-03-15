@@ -37,7 +37,7 @@ const HNAnalysis = ({
             onChange={username.updateValue}
             placeholder='Hacker News username'
           />
-          <button type='submit' className='analyze'>
+          <button type='submit' className='hn-user'>
             Analyze Sentiment
           </button>
         </form>
