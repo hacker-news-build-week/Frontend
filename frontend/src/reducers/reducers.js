@@ -148,10 +148,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         submittingHNUsername: false,
-        hNUsername: action.payload.username,
-        hNUsernameComments: action.payload.comments,
+        // hNUsername: action.payload.username,
+        hNUsernameComments: action.payload.top_10,
         hNUsernameTotal: action.payload.total,
-        hNUsernameSentiment: action.payload.sentiment,
+        hNUsernameSentiment: action.payload.user_average_sentiment,
         errorStatusCode: null
       };
     case SUBMIT_HNUSERNAME_FAILURE:
