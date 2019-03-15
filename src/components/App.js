@@ -10,7 +10,7 @@ import HNLeaderboards from './HNLeaderboards';
 
 const App = () => {
   return (
-    <div className='app'>
+    <div className='container'>
       <Route path='/loginsignup' component={LogInSignUp} />
       <PrivateRoute exact path='/' component={Sentiment} />
       <PrivateRoute path='/hnanalysis' component={HNAnalysis} />

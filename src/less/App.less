@@ -1,17 +1,18 @@
 .container {
-  border-radius: 8px;
-  margin: 20px;
+  border-radius: 5px;
+  margin: 20px auto;
   padding: 20px;
-  border: 7px dashed #ffd380;
-  background-color: #80ffcc;
-  color: #ff9380;
+  border: 7px solid @lightteal;
+  background-color: @teal;
+  color: @white;
   width: 100%;
   user-select: none;
+  .rtb;
 }
 
 h1 {
-  color: #a680ff;
-  font-size: 3.9em;
+  color: @white;
+  font-size: 5em;
   font-weight: 400;
   margin-bottom: 10px;
 }
@@ -19,21 +20,21 @@ h1 {
 .nav-bar {
   height: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .nav-link {
+  background: @white;
+  color: @orange;
   text-decoration: none;
   font-size: 1.5em;
-  background: #fbfbef;
-  color: #62cdfd;
   padding: 10px 20px 7px 20px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .active-nav-link {
-  background: #62cdfd;
-  color: #fbfbef;
+  background: @orange;
+  color: @white;
 }
