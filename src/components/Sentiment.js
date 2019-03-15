@@ -59,9 +59,9 @@ const Sentiment = ({
         <span className='example'>&nbsp;I dislike puppies&nbsp;</span> is scored
         as negative while{' '}
         <span className='example'>&nbsp;I dislike love&nbsp;</span> is scored as
-        positive. The positive score for the word{' '}
-        <span className='example'>&nbsp;love&nbsp;</span> outweighs the negative
-        score for the word <span className='example'>&nbsp;dislike</span>.
+        positive. In the counterintuitive second case, the positive score for
+        the word <span className='example'>love</span> outweighs the negative
+        score for the word <span className='example'>dislike</span>.
       </p>
       <h2>You can try out sentiment analysis by entering text below.</h2>
       <h2>We'll Keep track of your comments (/lyrics/missives) for you.</h2>

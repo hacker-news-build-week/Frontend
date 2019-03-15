@@ -13,6 +13,7 @@ const HNAnalysis = ({
   hNUsername,
   hNUsernameComments,
   hNUsernameSentiment,
+  submittingHNUsername,
   errorStatusCode
 }) => {
   const username = useInput();
@@ -36,7 +37,9 @@ const HNAnalysis = ({
             onChange={username.updateValue}
             placeholder='Hacker News username'
           />
-          <button type='submit'>Analyze Sentiment</button>
+          <button type='submit' className='analyze'>
+            Analyze Sentiment
+          </button>
         </form>
       </div>
 
@@ -47,6 +50,12 @@ const HNAnalysis = ({
             dataset. Please consider checking the{' '}
             <Link to='/hnleaderboards'>HN Leaderboards</Link> for inspiration.
           </h2>
+        </div>
+      )}
+
+      {submittingHNUsername && (
+        <div className='loading'>
+          <h2>Checking our dataset for username...</h2>
         </div>
       )}
 
@@ -92,11 +101,13 @@ const mapStateToProps = ({
   hNUsername,
   hNUsernameSentiment,
   hNUsernameComments,
+  submittingHNUsername,
   errorStatusCode
 }) => ({
   hNUsername,
   hNUsernameSentiment,
   hNUsernameComments,
+  submittingHNUsername,
   errorStatusCode
 });
 
