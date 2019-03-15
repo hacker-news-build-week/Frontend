@@ -12,7 +12,7 @@ import { removeTokenFromLocalStorage } from './utilities/removeTokenFromLocalSto
 import rootReducer from './reducers/reducers';
 
 import App from './components/App';
-import './main.css';
+import './css/main.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

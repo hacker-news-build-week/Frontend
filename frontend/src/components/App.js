@@ -14,7 +14,6 @@ const App = () => {
       <Route path='/loginsignup' component={LogInSignUp} />
       <PrivateRoute exact path='/' component={Sentiment} />
       <PrivateRoute path='/hnanalysis' component={HNAnalysis} />
-      {/* <PrivateRoute path='/hnanalysis/:username' component={HNSingleUser} /> */}
       <PrivateRoute path='/hnleaderboards' component={HNLeaderboards} />
     </div>
   );
