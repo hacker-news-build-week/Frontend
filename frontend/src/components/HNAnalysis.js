@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { useInput } from '../utilities/useInput';
 import { submitHNUsername } from '../actions/actions';
@@ -11,7 +12,8 @@ const HNAnalysis = ({
   submitHNUsername,
   hNUsername,
   hNUsernameComments,
-  hNUsernameSentiment
+  hNUsernameSentiment,
+  errorStatusCode
 }) => {
   const username = useInput();
 
@@ -36,6 +38,16 @@ const HNAnalysis = ({
           <button type='submit'>Analyze Sentiment</button>
         </form>
       </div>
+
+      {errorStatusCode && (
+        <div className='error'>
+          <h2>
+            There doesn't seem to be a Hacker News user by that name in our
+            dataset. Please consider checking the{' '}
+            <Link to='/hnleaderboards'>HN Leaderboards</Link> for inspiration.
+          </h2>
+        </div>
+      )}
 
       {hNUsername && (
         <div>
@@ -78,11 +90,13 @@ const HNAnalysis = ({
 const mapStateToProps = ({
   hNUsername,
   hNUsernameSentiment,
-  hNUsernameComments
+  hNUsernameComments,
+  errorStatusCode
 }) => ({
   hNUsername,
   hNUsernameSentiment,
-  hNUsernameComments
+  hNUsernameComments,
+  errorStatusCode
 });
 
 export default connect(
