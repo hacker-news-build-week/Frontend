@@ -14,12 +14,13 @@ const HNLeaderboards = ({ history, fetchSaliestHNUsers, saltiestHNUsers }) => {
     <div className='hnleaderboards'>
       <NavBar history={history} />
       <div className='hnleaderboards-users'>
-        <h2>Saltiest Hacker News Users</h2>
+        <h1 className='salty'>Saltiest Hacker News Users</h1>
         <div className='hnuser-list'>
-          {saltiestHNUsers.map(hNUser => (
+          {saltiestHNUsers.map((hNUser, index) => (
             <HNUser
               key={hNUser.id}
               history={history}
+              score={index + 1}
               username={hNUser.username}
               numberOfComments={hNUser.numberOfComments}
               overallSent={hNUser.overallSentNum}

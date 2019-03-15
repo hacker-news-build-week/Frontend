@@ -8,6 +8,7 @@ export const HNUser = ({
   username,
   numberOfComments,
   overallSent,
+  score,
   submitHNUsername
 }) => {
   const requestSubmitHNUsername = e => {
@@ -18,13 +19,18 @@ export const HNUser = ({
 
   return (
     <div className='hnuser'>
-      <p>HN User: </p>
-      <div onClick={requestSubmitHNUsername}>{username}</div>{' '}
-      <p>
-        Total Number of Comments: {numberOfComments} Overall Sentiment:{' '}
-        {overallSent}
-      </p>
-      <i className='far fa-angry' />
+      <h2 className='score'>{score}.&nbsp;&nbsp;</h2>
+      <div onClick={requestSubmitHNUsername} className='hnusername-link'>
+        {username}
+      </div>
+      &nbsp; &nbsp;
+      <h2 className='leaderboard'>
+        &nbsp; &nbsp; Comments analyzed: {numberOfComments} &nbsp; &nbsp;
+        Overall Sentiment: {overallSent}
+      </h2>
+      <div className='leaderboard-icon'>
+        <i className='far fa-angry' />
+      </div>
     </div>
   );
 };

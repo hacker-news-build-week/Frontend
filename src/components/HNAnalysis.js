@@ -87,7 +87,10 @@ const HNAnalysis = ({
               <i className='far fa-meh' />
             </h2>
           )}
-          <h2>Comment Sampler</h2>
+          <h2>
+            Comment Sampler (not necessarily representative of the user's
+            overall sentiment)
+          </h2>
           <div className='comments-list'>
             {hNUsernameComments.map((comment, index) => (
               <HNComment

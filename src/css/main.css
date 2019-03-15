@@ -329,3 +329,36 @@ button {
   color: #66fcf1;
   font-weight: bold;
 }
+.salty {
+  font-weight: bold;
+}
+.hnuser {
+  display: flex;
+}
+.hnusername-link {
+  font-size: 3em;
+  font-weight: bold;
+  padding-top: 3px;
+  cursor: pointer;
+  color: #5c5cd6;
+}
+.leaderboard {
+  padding-top: 3px;
+}
+.score {
+  font-size: 3em;
+}
+.leaderboard-icon {
+  font-size: 2.1em;
+}
+.fa-smile {
+  color: #33ff77;
+  -webkit-text-stroke: 1px #00802b;
+}
+.fa-meh {
+  color: #fbfbef;
+  -webkit-text-stroke: 1px #8f8f24;
+}
+.fa-angry {
+  color: #b32400;
+}
