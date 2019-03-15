@@ -38,6 +38,7 @@ const Sentiment = ({
     newCommentText.setValue('');
     setCommentCount(commentCount + 1);
   };
+
   return (
     <div className='sentiment'>
       <NavBar history={history} />

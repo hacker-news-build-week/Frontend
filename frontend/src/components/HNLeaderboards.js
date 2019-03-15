@@ -3,19 +3,11 @@ import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
 import HNUser from './HNUser';
-// import HNTopic from './HNTopic';
 import { fetchSaliestHNUsers, fetchSaliestHNTopics } from '../actions/actions';
 
-const HNLeaderboards = ({
-  history,
-  fetchSaliestHNUsers,
-  fetchSaliestHNTopics,
-  saltiestHNUsers,
-  saltiestHNTopics
-}) => {
+const HNLeaderboards = ({ history, fetchSaliestHNUsers, saltiestHNUsers }) => {
   useEffect(() => {
     fetchSaliestHNUsers();
-    // fetchSaliestHNTopics();
   }, []);
 
   return (
@@ -34,19 +26,6 @@ const HNLeaderboards = ({
           ))}
         </div>
       </div>
-      {/* <div className='hnleaderboards-topics'>
-        <h2>Saltiest Hacker News Topics</h2>
-        <div className='hntopic-list'>
-          {saltiestHNTopics.map(hNTopic => (
-            <HNTopic
-              key={hNTopic.id}
-              topic={hNTopic.topic}
-              numberOfComments={hNTopic.numberOfComments}
-              overallSent={hNTopic.overallSent}
-            />
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 };

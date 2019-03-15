@@ -20,6 +20,7 @@ const HNAnalysis = ({
   const requestSubmitHNUsername = e => {
     e.preventDefault();
     submitHNUsername(username.value);
+    username.setValue('');
   };
 
   return (
