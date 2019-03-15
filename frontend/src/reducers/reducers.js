@@ -42,7 +42,6 @@ const initialState = {
   submittingHNUsername: false,
   hNUsername: '',
   hNUsernameComments: [],
-  hNUsernameTotal: '',
   hNUsernameSentiment: '',
   fetchingSaltiestHNUsers: false,
   saltiestHNUsers: [],
@@ -145,13 +144,13 @@ export default (state = initialState, action) => {
     case SUBMIT_HNUSERNAME_REQUEST:
       return { ...state, submittingHNUsername: true, errorStatusCode: null };
     case SUBMIT_HNUSERNAME_SUCCESS:
+      const roundedSent = action.payload.user_average_sentiment.toFixed(4);
       return {
         ...state,
         submittingHNUsername: false,
         hNUsername: action.payload.hNUsername,
         hNUsernameComments: action.payload.top_10,
-        hNUsernameTotal: action.payload.total,
-        hNUsernameSentiment: action.payload.user_average_sentiment,
+        hNUsernameSentiment: roundedSent,
         errorStatusCode: null
       };
     case SUBMIT_HNUSERNAME_FAILURE:

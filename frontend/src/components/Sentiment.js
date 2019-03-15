@@ -43,10 +43,12 @@ const Sentiment = ({
       <NavBar history={history} />
       <h1>What is sentiment analysis?</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, quis
-        doloremque. Doloribus optio voluptate saepe asperiores laudantium vero
-        dignissimos beatae. Quisquam provident libero quos fuga ex in quas fugit
-        distinctio?
+        Sentiment analysis, also known as opinion mining, is an automated data
+        mining process that analyzes written or spoken language in order to
+        determine the mood or emotion of what is being expressed. Specifically,
+        sentiment analysis seeks to discover whether what is expressed is
+        positive, negative, or neutral. It is useful in mining large amounts of
+        data to determine people's attitudes on particular topics.
       </p>
       <h2>Try it out by entering text below:</h2>
       <form onSubmit={requestAddComment}>
