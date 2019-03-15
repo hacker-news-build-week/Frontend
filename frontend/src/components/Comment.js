@@ -36,11 +36,6 @@ export const Comment = ({
     setCommentForm(!editCommentForm);
   };
 
-  // {!commentForm && (
-  //       <p>
-  //         {commentText} {commentSent}
-  //       </p>)}
-
   return (
     <div className='comment'>
       {!commentForm && commentSent === 'positive' ? (

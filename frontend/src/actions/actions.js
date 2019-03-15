@@ -132,14 +132,16 @@ export const SUBMIT_HNUSERNAME_REQUEST = 'SUBMIT_HNUSERNAME_REQUEST';
 export const SUBMIT_HNUSERNAME_SUCCESS = 'SUBMIT_HNUSERNAME_SUCCESS';
 export const SUBMIT_HNUSERNAME_FAILURE = 'SUBMIT_HNUSERNAME_FAILURE';
 
-export const submitHNUsername = HNusername => dispatch => {
+export const submitHNUsername = hNUsername => dispatch => {
   dispatch({ type: SUBMIT_HNUSERNAME_REQUEST });
-  // return axiosAuth()
   return axios
-    .get(`https://hn-comments.herokuapp.com/user_lookup/${HNusername}`)
+    .get(`https://hn-comments.herokuapp.com/user_lookup/${hNUsername}`)
     .then(res => {
       console.log('HN res: ', res);
-      dispatch({ type: SUBMIT_HNUSERNAME_SUCCESS, payload: res.data });
+      dispatch({
+        type: SUBMIT_HNUSERNAME_SUCCESS,
+        payload: { ...res.data, hNUsername }
+      });
     })
     .catch(err => {
       dispatch({ type: SUBMIT_HNUSERNAME_FAILURE, payload: err.response });
