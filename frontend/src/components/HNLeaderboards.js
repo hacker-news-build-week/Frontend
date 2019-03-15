@@ -19,6 +19,7 @@ const HNLeaderboards = ({ history, fetchSaliestHNUsers, saltiestHNUsers }) => {
           {saltiestHNUsers.map(hNUser => (
             <HNUser
               key={hNUser.id}
+              history={history}
               username={hNUser.username}
               numberOfComments={hNUser.numberOfComments}
               overallSent={hNUser.overallSentNum}

@@ -1,15 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export const HNUser = ({ username, numberOfComments, overallSent }) => {
+import { submitHNUsername } from '../actions/actions';
+
+export const HNUser = ({
+  history,
+  username,
+  numberOfComments,
+  overallSent,
+  submitHNUsername
+}) => {
+  const requestSubmitHNUsername = e => {
+    e.preventDefault();
+    submitHNUsername(username);
+    history.push('/hnanalysis');
+  };
+
   return (
     <div className='hnuser'>
+      <p>HN User: </p>
+      <div onClick={requestSubmitHNUsername}>{username}</div>{' '}
       <p>
-        HN User: {username} Total Number of Comments: {numberOfComments} Overall
-        Sentiment: {overallSent}
+        Total Number of Comments: {numberOfComments} Overall Sentiment:{' '}
+        {overallSent}
       </p>
       <i className='far fa-angry' />
     </div>
   );
 };
 
-export default HNUser;
+export default connect(
+  null,
+  { submitHNUsername }
+)(HNUser);
