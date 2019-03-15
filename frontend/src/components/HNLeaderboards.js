@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
 import HNUser from './HNUser';
-import { fetchSaliestHNUsers, fetchSaliestHNTopics } from '../actions/actions';
+import { fetchSaliestHNUsers } from '../actions/actions';
 
 const HNLeaderboards = ({ history, fetchSaliestHNUsers, saltiestHNUsers }) => {
   useEffect(() => {
@@ -30,12 +30,11 @@ const HNLeaderboards = ({ history, fetchSaliestHNUsers, saltiestHNUsers }) => {
   );
 };
 
-const mapStateToProps = ({ saltiestHNUsers, saltiestHNTopics }) => ({
-  saltiestHNUsers,
-  saltiestHNTopics
+const mapStateToProps = ({ saltiestHNUsers }) => ({
+  saltiestHNUsers
 });
 
 export default connect(
   mapStateToProps,
-  { fetchSaliestHNUsers, fetchSaliestHNTopics }
+  { fetchSaliestHNUsers }
 )(HNLeaderboards);

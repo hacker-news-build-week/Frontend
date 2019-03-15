@@ -24,10 +24,7 @@ import {
   SUBMIT_HNUSERNAME_FAILURE,
   FETCH_SALTIEST_HNUSERS_REQUEST,
   FETCH_SALTIEST_HNUSERS_SUCCESS,
-  FETCH_SALTIEST_HNUSERS_FAILURE,
-  FETCH_SALTIEST_HNTOPICS_REQUEST,
-  FETCH_SALTIEST_HNTOPICS_SUCCESS,
-  FETCH_SALTIEST_HNTOPICS_FAILURE
+  FETCH_SALTIEST_HNUSERS_FAILURE
 } from '../actions/actions';
 
 const initialState = {
@@ -176,26 +173,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingSaltiestHNUsers: false,
-        errorStatusCode: action.payload
-      };
-
-    case FETCH_SALTIEST_HNTOPICS_REQUEST:
-      return {
-        ...state,
-        fetchingSaltiestHNTopics: true,
-        errorStatusCode: null
-      };
-    case FETCH_SALTIEST_HNTOPICS_SUCCESS:
-      return {
-        ...state,
-        fetchingSaltiestHNTopics: false,
-        saltiestHNTopics: action.payload,
-        errorStatusCode: null
-      };
-    case FETCH_SALTIEST_HNTOPICS_FAILURE:
-      return {
-        ...state,
-        fetchingSaltiestHNTopics: false,
         errorStatusCode: action.payload
       };
 

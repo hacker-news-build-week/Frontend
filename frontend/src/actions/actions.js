@@ -167,26 +167,3 @@ export const fetchSaliestHNUsers = () => dispatch => {
       });
     });
 };
-
-// Fetchs 10 topics (strings) whose posts are the saltiest:
-export const FETCH_SALTIEST_HNTOPICS_REQUEST =
-  'FETCH_SALTIEST_HNTOPICS_REQUEST';
-export const FETCH_SALTIEST_HNTOPICS_SUCCESS =
-  'FETCH_SALTIEST_HNTOPICS_SUCCESS';
-export const FETCH_SALTIEST_HNTOPICS_FAILURE =
-  'FETCH_SALTIEST_HNTOPICS_FAILURE';
-
-export const fetchSaliestHNTopics = () => dispatch => {
-  dispatch({ type: FETCH_SALTIEST_HNTOPICS_REQUEST });
-  return axiosAuth()
-    .get('https://sentimentserver.herokuapp.com/api/saltiestHNTopics')
-    .then(res => {
-      dispatch({ type: FETCH_SALTIEST_HNTOPICS_SUCCESS, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({
-        type: FETCH_SALTIEST_HNTOPICS_FAILURE,
-        payload: err.response
-      });
-    });
-};
