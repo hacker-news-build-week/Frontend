@@ -143,8 +143,8 @@ body {
   box-sizing: border-box;
   border-radius: 5px;
   margin: 20px;
-  padding: 20px;
-  border: 7px solid #fc4445;
+  padding: 30px;
+  border: 7px solid #fc7345;
   background-color: #55bcc9;
   color: #fbfbef;
   width: 95%;
@@ -164,7 +164,7 @@ h1 {
 }
 .nav-link {
   background: #fbfbef;
-  color: #fc4445;
+  color: #fc7345;
   text-decoration: none;
   font-size: 1.5em;
   padding: 10px 20px 7px 20px;
@@ -172,13 +172,15 @@ h1 {
   cursor: pointer;
 }
 .active-nav-link {
-  background: #fc4445;
+  background: #fc7345;
   color: #fbfbef;
 }
 p {
   font-size: 2em;
   line-height: 1.2;
   padding: 0 0 20px 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 h2 {
   font-size: 2.5em;
@@ -191,12 +193,33 @@ h2 {
   display: flex;
   margin: 5px;
   padding: 5px;
-  background: #fc4445;
+  background: #fc7345;
   border-radius: 5px;
   font-size: 10px;
 }
 input {
   font-size: 20px;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 8px 8px 8px 0;
+}
+button {
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 5px 8px;
+  border: none;
+}
+.analyze {
+  background: #5c5cd6;
+  color: #fbfbef;
+}
+.edit {
+  background: #33cc33;
+  color: #fbfbef;
+}
+.delete {
+  background: #cc3333;
+  color: #fbfbef;
 }
 .example {
   font-style: italic;

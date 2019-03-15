@@ -56,16 +56,15 @@ const Sentiment = ({
         dictionary and given a sentiment score. Then the overall sentiment is
         determined by the average of the scores for each word. Notably, the text
         is not analyzed for meaning. For example,{' '}
-        <span className='example'>I dislike puppies</span> is scored as negative
-        while <span className='example'>I dislike love</span> is scored as
+        <span className='example'>&nbsp;I dislike puppies&nbsp;</span> is scored
+        as negative while{' '}
+        <span className='example'>&nbsp;I dislike love&nbsp;</span> is scored as
         positive. The positive score for the word{' '}
-        <span className='example'>love</span> outweighs the negative score for
-        the word <span className='example'>dislike</span>.
+        <span className='example'>&nbsp;love&nbsp;</span> outweighs the negative
+        score for the word <span className='example'>&nbsp;dislike</span>.
       </p>
-      <h2>
-        You can try out sentiment analysis by entering text below. We'll Keep
-        track of your comments for you.
-      </h2>
+      <h2>You can try out sentiment analysis by entering text below.</h2>
+      <h2>We'll Keep track of your comments (/lyrics/missives) for you.</h2>
       <form onSubmit={requestAddComment}>
         <input
           required
@@ -74,10 +73,14 @@ const Sentiment = ({
           onChange={newCommentText.updateValue}
           placeholder='Enter text here'
         />
-        <button type='submit'>Analyze Sentiment</button>
+        <button type='submit' className='analyze'>
+          Analyze Sentiment
+        </button>
       </form>
       {commentCount >= 3 && addingComment === false && (
-        <Link to='/hnanalysis'>Ready to try it?</Link>
+        <Link to='/hnanalysis'>
+          Try sentiment analysis on Hacker News users!
+        </Link>
       )}
       <div className='comments-list'>
         {comments.map(comment => (

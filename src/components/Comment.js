@@ -68,11 +68,14 @@ export const Comment = ({
         </form>
       )}
       <div className='controls'>
-        <button onClick={editCommentForm}>Edit Comment</button>
+        <button onClick={editCommentForm} className='edit'>
+          Edit Comment
+        </button>
         <button
           onClick={() =>
             deleteComment({ saltyUserId, commentIdDelete: commentId })
           }
+          className='delete'
         >
           Delete Comment
         </button>
