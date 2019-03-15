@@ -130,22 +130,25 @@ table {
   border: 2px dashed red;
 }
 body {
+  box-sizing: border-box;
   font-size: 62.5%;
-  max-width: 800px;
+  max-width: 1000px;
   font-family: 'Source Sans Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #66fcf1;
+  margin: 0 auto;
 }
 .container {
+  box-sizing: border-box;
   border-radius: 5px;
-  margin: 20px auto;
+  margin: 20px;
   padding: 20px;
-  border: 7px solid #66fcf1;
+  border: 7px solid #fc4445;
   background-color: #55bcc9;
   color: #fbfbef;
-  width: 100%;
+  width: 95%;
   user-select: none;
-  border: 2px dashed red;
 }
 h1 {
   color: #fbfbef;
@@ -172,6 +175,30 @@ h1 {
   background: #fc4445;
   color: #fbfbef;
 }
-.sentiment {
-  border: 2px dashed red;
+p {
+  font-size: 2em;
+  line-height: 1.2;
+  padding: 0 0 20px 0;
+}
+h2 {
+  font-size: 2.5em;
+}
+.far {
+  font-size: 1.6em;
+  color: yellow;
+}
+.comment {
+  display: flex;
+  margin: 5px;
+  padding: 5px;
+  background: #fc4445;
+  border-radius: 5px;
+  font-size: 10px;
+}
+input {
+  font-size: 20px;
+}
+.example {
+  font-style: italic;
+  color: #66fcf1;
 }

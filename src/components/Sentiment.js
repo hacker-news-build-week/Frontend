@@ -51,7 +51,21 @@ const Sentiment = ({
         positive, negative, or neutral. It is useful in mining large amounts of
         data to determine people's attitudes on particular topics.
       </p>
-      <h2>Try it out by entering text below:</h2>
+      <p>
+        In basic sentiment analysis, each word is compared to a sentiment
+        dictionary and given a sentiment score. Then the overall sentiment is
+        determined by the average of the scores for each word. Notably, the text
+        is not analyzed for meaning. For example,{' '}
+        <span className='example'>I dislike puppies</span> is scored as negative
+        while <span className='example'>I dislike love</span> is scored as
+        positive. The positive score for the word{' '}
+        <span className='example'>love</span> outweighs the negative score for
+        the word <span className='example'>dislike</span>.
+      </p>
+      <h2>
+        You can try out sentiment analysis by entering text below. We'll Keep
+        track of your comments for you.
+      </h2>
       <form onSubmit={requestAddComment}>
         <input
           required

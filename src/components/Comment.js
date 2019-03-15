@@ -48,12 +48,12 @@ export const Comment = ({
           {commentText}
           <i className='far fa-meh' />
         </p>
-      ) : (
+      ) : !commentForm && commentSent === 'negative' ? (
         <p>
           {commentText}
           <i className='far fa-angry' />
         </p>
-      )}
+      ) : null}
       {commentForm && (
         <form onSubmit={requestEditComment}>
           <input
@@ -69,13 +69,13 @@ export const Comment = ({
       )}
       <div className='controls'>
         <button onClick={editCommentForm}>Edit Comment</button>
-        <div
+        <button
           onClick={() =>
             deleteComment({ saltyUserId, commentIdDelete: commentId })
           }
         >
-          <i className='fas fa-times' />
-        </div>
+          Delete Comment
+        </button>
       </div>
     </div>
   );
