@@ -12,29 +12,37 @@ export const NavBar = ({ logOut, history }) => {
 
   return (
     <div className='nav-bar'>
-      <NavLink
-        exact
-        to='/'
-        className='nav-link'
-        activeClassName='active-nav-link'
-      >
-        <div>Sentiment Analysis</div>
-      </NavLink>
-      <NavLink
-        to='/hnanalysis'
-        className='nav-link'
-        activeClassName='active-nav-link'
-      >
-        <div>HN Comment Analysis</div>
-      </NavLink>
-      <NavLink
-        to='/hnleaderboards'
-        className='nav-link'
-        activeClassName='active-nav-link'
-      >
-        <div>HN Leaderboards</div>
-      </NavLink>
-      <div onClick={submitLogout}>Logout</div>
+      <h1 className='title'>Saltiest Hacker News Trolls</h1>
+      <h2 className='subtitle'>Sentiment Analysis</h2>
+      <div className='nav-div'>
+        <div className='nav-link-div'>
+          <NavLink
+            exact
+            to='/'
+            className='nav-link'
+            activeClassName='active-nav-link'
+          >
+            <div>Sentiment Analysis</div>
+          </NavLink>
+          <NavLink
+            to='/hnanalysis'
+            className='nav-link'
+            activeClassName='active-nav-link'
+          >
+            <div>HN User Analysis</div>
+          </NavLink>
+          <NavLink
+            to='/hnleaderboards'
+            className='nav-link'
+            activeClassName='active-nav-link'
+          >
+            <div>HN Leaderboards</div>
+          </NavLink>
+        </div>
+        <div onClick={submitLogout} className='nav-link'>
+          Logout
+        </div>
+      </div>
     </div>
   );
 };

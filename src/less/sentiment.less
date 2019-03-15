@@ -6,6 +6,13 @@ p {
   text-justify: inter-word;
 }
 
+h1 {
+  color: @white;
+  font-size: 4.5em;
+  font-weight: 400;
+  margin: 15px 0;
+}
+
 h2 {
   font-size: 2.5em;
   line-height: 1.2;
@@ -19,6 +26,8 @@ h2 {
 }
 
 .comment {
+  box-sizing: border-box;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   margin: 15px 0;
@@ -49,17 +58,36 @@ textarea {
 
 input {
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 20px;
+  font-size: 17px;
   border-radius: 5px;
-  //   margin: 20px 0 12px 0;
   padding: 5px 8px;
 }
 
 button {
+  cursor: pointer;
   font-size: 18px;
   border-radius: 5px;
   padding: 5px 8px;
   border: none;
+}
+
+.link-div {
+  display: flex;
+  background: #5c5cd6;
+  border-radius: 5px;
+}
+
+.cta {
+  font-size: 20px;
+  color: @white;
+  padding: 5px 8px;
+  //   font-family: 'Source Sans Pro', sans-serif;
+  text-decoration: none;
+}
+
+.analyze-div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .example {
@@ -89,7 +117,14 @@ button {
   background: #33cc33;
   color: @white;
 }
+
 .delete {
+  margin: 3px;
+  background: #cc3333;
+  color: @white;
+}
+
+.cancel {
   margin: 3px;
   background: #cc3333;
   color: @white;

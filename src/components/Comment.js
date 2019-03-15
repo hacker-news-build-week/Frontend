@@ -63,23 +63,30 @@ export const Comment = ({
             onChange={editCommentText.updateValue}
             placeholder='Enter text here'
           />
-          <button type='submit'>Submit Edit</button>
-          <button onClick={editCommentForm}>Cancel Edit</button>
+          <button type='submit' className='edit'>
+            Submit Edit
+          </button>
+          <button onClick={editCommentForm} className='cancel'>
+            Cancel Edit
+          </button>
         </form>
       )}
-      <div className='controls'>
-        <button onClick={editCommentForm} className='edit'>
-          Edit Comment
-        </button>
-        <button
-          onClick={() =>
-            deleteComment({ saltyUserId, commentIdDelete: commentId })
-          }
-          className='delete'
-        >
-          Delete Comment
-        </button>
-      </div>
+      {!commentForm && (
+        <div className='controls'>
+          <button onClick={editCommentForm} className='edit'>
+            Edit Comment
+          </button>
+
+          <button
+            onClick={() =>
+              deleteComment({ saltyUserId, commentIdDelete: commentId })
+            }
+            className='delete'
+          >
+            Delete Comment
+          </button>
+        </div>
+      )}
     </div>
   );
 };

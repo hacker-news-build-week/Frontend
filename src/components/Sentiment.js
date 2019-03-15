@@ -88,16 +88,20 @@ const Sentiment = ({
           placeholder='Enter text here'
           className='comment-box'
         />
-        <button type='submit' className='analyze'>
-          Analyze Sentiment
-        </button>{' '}
-        {commentCount >= 3 && addingComment === false && (
-          <Link to='/hnanalysis' className='cta'>
-            Try sentiment analysis on Hacker News users!
-          </Link>
-        )}
+        <div className='analyze-div'>
+          <button type='submit' className='analyze'>
+            Analyze Sentiment
+          </button>{' '}
+          {commentCount >= 3 && addingComment === false && (
+            <div className='link-div'>
+              {' '}
+              <Link to='/hnanalysis' className='cta'>
+                Don't forget to try sentiment analysis on Hacker News users!
+              </Link>
+            </div>
+          )}
+        </div>
       </form>
-
       <div className='comments-list'>
         {comments.map(comment => (
           <Comment

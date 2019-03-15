@@ -150,14 +150,28 @@ body {
   width: 95%;
   user-select: none;
 }
-h1 {
-  color: #fbfbef;
-  font-size: 5em;
-  font-weight: 400;
-  margin: 15px 0;
-}
 .nav-bar {
-  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.title {
+  font-size: 7em;
+  margin: 0;
+  font-weight: bold;
+}
+.subtitle {
+  line-height: 1;
+  margin: 10px 0 20px 0;
+}
+.nav-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-link-div {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -166,8 +180,10 @@ h1 {
   background: #fbfbef;
   color: #fc7345;
   text-decoration: none;
-  font-size: 1.5em;
-  padding: 10px 20px 7px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -182,6 +198,12 @@ p {
   text-align: justify;
   text-justify: inter-word;
 }
+h1 {
+  color: #fbfbef;
+  font-size: 4.5em;
+  font-weight: 400;
+  margin: 15px 0;
+}
 h2 {
   font-size: 2.5em;
   line-height: 1.2;
@@ -193,6 +215,8 @@ h2 {
   padding: 10px 0 0 10px;
 }
 .comment {
+  box-sizing: border-box;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   margin: 15px 0;
@@ -220,15 +244,31 @@ textarea {
 }
 input {
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 20px;
+  font-size: 17px;
   border-radius: 5px;
   padding: 5px 8px;
 }
 button {
+  cursor: pointer;
   font-size: 18px;
   border-radius: 5px;
   padding: 5px 8px;
   border: none;
+}
+.link-div {
+  display: flex;
+  background: #5c5cd6;
+  border-radius: 5px;
+}
+.cta {
+  font-size: 20px;
+  color: #fbfbef;
+  padding: 5px 8px;
+  text-decoration: none;
+}
+.analyze-div {
+  display: flex;
+  justify-content: space-between;
 }
 .example {
   font-style: italic;
@@ -254,6 +294,11 @@ button {
   color: #fbfbef;
 }
 .delete {
+  margin: 3px;
+  background: #cc3333;
+  color: #fbfbef;
+}
+.cancel {
   margin: 3px;
   background: #cc3333;
   color: #fbfbef;
