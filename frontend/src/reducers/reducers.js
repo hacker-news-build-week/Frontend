@@ -157,6 +157,9 @@ export default (state = initialState, action) => {
       return {
         ...state,
         submittingHNUsername: false,
+        hNUsername: '',
+        hNUsernameComments: [],
+        hNUsernameSentiment: '',
         errorStatusCode: action.payload
       };
 
